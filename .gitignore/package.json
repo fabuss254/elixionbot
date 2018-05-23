@@ -8,7 +8,7 @@
   },
   "engines": {
     "node": "6.5.0"
-  }
+  },
   "author": "fabuss254",
   "license": "ISC",
   "dependencies": {
