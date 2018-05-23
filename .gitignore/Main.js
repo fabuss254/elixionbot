@@ -41,12 +41,6 @@ bot.on('ready', ()=> {
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
 
-bot.on("guildDelete", LeavedGuild => {
-    if (GuildsData[CreatedGuild.id]) {
-        GuildsData[CreatedGuild.id] = null
-    };
-});
-
 bot.on('message', message => {
     if (message.author.bot) return;
     var Mes = true
