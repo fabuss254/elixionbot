@@ -34,95 +34,12 @@ bot.on('ready', ()=> {
     console.log("Total user: " + TotalUser );
     console.log("]----[END]----[")
     console.log("Bot ready to be use!");
-    bot.user.setPresence({game:{name: prefix + "help", url: "https://www.twitch.tv/fabuss255", type: 1}}).catch(console.error);
+    bot.user.setPresence({game:{name: prefix + "help", url: "https://www.twitch.tv/fabuss255", type: 1}});
     bot.setInterval(OnInterval, 10000, TotalUser, AvailableGuild);
 });
 
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
-
-bot.on('message', message => {
-    if (message.author.bot) return;
-    var Mes = true
-    if (Preferences.Debug){
-        if (!message.author.id === 178131193768706048){
-            message.channel.send("Le bot est actuellement en debug mode, Merci de bien vouloir patienter avant de pouvoir l'utiliser!");
-            Mes = false
-        };
-    };
-    if (Mes === true){
-    if (message.content.startsWith(prefix)){
-        if (message.content === prefix + "help"){
-            var help_embed = new Discord.RichEmbed();
-            help_embed.setColor("#00FE2A");
-            help_embed.addField("Commandes du bot:",prefix + "help - Afficher les commandes");
-            help_embed.setFooter(footer);
-            message.channel.send(help_embed);
-            console.log("Discord user has used the command: help");
-        };
-
-        var args = message.content.substring(prefix.length).split(" ");
-        switch(args[0].toLowerCase()){
-
-            case "id":
-                message.channel.send("ID: " + message.author.id);
-                break;
-
-            case "botinfo":
-                var bot_embed = new Discord.RichEmbed()
-                .setColor("#06FAB2")
-                .addField(
-                    "Info sur le bot:", "Le bot est sur: " +
-                    bot.guilds.array().length + 
-                    " Serveurs\nNom du bot: " + 
-                    bot.user.tag +
-                    "\nMarche depuis: " +
-                    getuptime() +
-                    "\nBot creer par: " +
-                    Details.author
-                )
-                .setFooter(footer);
-                message.channel.send(bot_embed);
-                break;
-
-        };
-    };
-};
-});
-
-
-
-/* FUNCTIONS */
-
-function getuptime(){
-    var Time = Math.floor(bot.uptime/1000)
-    if (Time < 60){
-        return Time + "s"
-    }
-    if(Time > 60 | Time < 3600){
-        var min = Math.floor(Time/60)
-        var second = Time - (min * 60)
-        return min + "m " + second + "s"
-    }
-    if (Time > 3600){
-        var hours = Math.floor(Time/3600)
-        var min = Math.floor(Time/60) - (hours * 60)
-        var second = Time - ((min * 60)+(hours*3600))
-        return hours + "h " + min + "m " + second + "s"
-    }
-}
-
-function OnInterval(TotalUser2, TotalGuild2){
-    if (IntervalMode === 1){
-        bot.user.setPresence({game:{name: "Total d'utilisateurs: " + TotalUser2, url: "https://www.twitch.tv/fabuss255", type: 1}}).then(IntervalMode = 2).catch(console.error);
-    }
-    else if (IntervalMode === 2){
-        bot.user.setPresence({game:{name: "Total de serveur: " + TotalGuild2, url: "https://www.twitch.tv/fabuss255", type: 1}}).then(IntervalMode = 3).catch(console.error);
-    }
-    else if (IntervalMode === 3){
-        bot.user.setPresence({game:{name: prefix + "help", url: "https://www.twitch.tv/fabuss255", type: 1}}).then(IntervalMode = 1).catch(console.error);
-    };
-}
 
 bot.on("error", err => {
     console.log(err);
