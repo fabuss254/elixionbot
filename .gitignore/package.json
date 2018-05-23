@@ -1,13 +1,10 @@
 {
   "name": "ElixBot",
   "version": "1.0.0",
-  "description": "Discord bot",
+  "description": "ElixionBot",
   "main": "Main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "engines": {
-    "node": "6.5.0"
   },
   "author": "fabuss254",
   "license": "ISC",
@@ -18,6 +15,7 @@
     "ffmpeg-binaries": "^3.2.2-3",
     "forever-monitor": "^1.7.1",
     "opusscript": "0.0.6",
+    "request": "^2.85.0",
     "ytdl-core": "^0.20.2"
   }
 }
