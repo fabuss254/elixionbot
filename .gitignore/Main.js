@@ -9,13 +9,12 @@ const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
 var prefix = Preferences.Prefix;
 var footer = Preferences.Footer_Embed;
-var IntervalMode = 1;
 
 var bot = new Discord.Client();
 
 /* EVENEMENT */
 
-bot.on('ready', ()=> {
+bot.on("ready", ()=> {
     var GuildTable = bot.guilds.array();
     var TotalUser = 0;
     var AvailableGuild = 0;
@@ -35,7 +34,6 @@ bot.on('ready', ()=> {
     console.log("]----[END]----[")
     console.log("Bot ready to be use!");
     bot.user.setPresence({game:{name: prefix + "help", url: "https://www.twitch.tv/fabuss255", type: 1}});
-    bot.setInterval(OnInterval, 10000, TotalUser, AvailableGuild);
 });
 
 bot.login(process.env.TOKEN);
@@ -43,5 +41,4 @@ console.log("Login succesfully!");
 
 bot.on("error", err => {
     console.log(err);
- 
-})
+});
