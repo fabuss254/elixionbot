@@ -4,7 +4,6 @@
 
 const Discord = require("discord.js");
 
-const auth = require("./Bot_Modules/Auth.json");
 const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
 var prefix = Preferences.Prefix;
