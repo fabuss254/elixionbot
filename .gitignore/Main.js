@@ -38,7 +38,7 @@ bot.on('ready', ()=> {
     bot.setInterval(OnInterval, 10000, TotalUser, AvailableGuild);
 });
 
-bot.login(auth.token);
+bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
 
 bot.on("guildDelete", LeavedGuild => {
