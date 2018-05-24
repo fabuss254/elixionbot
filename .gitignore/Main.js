@@ -79,16 +79,16 @@ function dhm(ms) {
     minutesms = ms % (60 * 1000);
     sec = Math.floor((minutesms) / (1000));
     
-    if (sec.length == 1){
+    if (sec.length === 1){
         sec = "0" + sec;
     };
-    if (days.length == 1){
+    if (days.length === 1){
         days = "0" + days;
     };
-    if (hours.length == 1){
+    if (hours.length === 1){
         hours = "0" + hours;
     };
-    if (minutes.length == 1){
+    if (minutes.length === 1){
         minutes = "0" + minutes;
     };
     return days + ":" + hours + ":" + minutes + ":" + sec;
