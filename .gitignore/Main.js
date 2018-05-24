@@ -41,14 +41,36 @@ bot.on("message", async function(message) {
     if (!message.content.startsWith(prefix)) return;
     switch (args[0].toLowerCase()) {
  
-case "help":
-    message.delete();
-    var help_embed = new Discord.RichEmbed()
-        .setColor("#FFFFFF")
-        .addField(prefix + "help", "Affiche la liste des commandes disponibles.");
-    message.channel.send(help_embed);
-break;
-}});
+        case "help":
+            message.delete();
+            var help_embed = new Discord.RichEmbed()
+                .setColor("#FFFFFF")
+                .addField(prefix + "help", "Affiche la liste des commandes disponibles.");
+            message.channel.send(help_embed);
+            break;
+        
+        case "botinfo":
+            message.delete();
+            var dt_embed = new Discord.RichEmbed()
+                .setColor("#FFFFFF")
+                .addField("Createur: fabuss254")
+                .addField("Prefix: " + prefix)
+                .addField("Uptime: "+ dhm(bot.uptime);
+            message.channel.send(dt_embed);
+            break;
+    }
+});
+
+function dhm(ms) {
+    days = Math.floor(ms / (24 * 60 * 60 * 1000));    
+    daysms = ms % (24 * 60 * 60 * 1000);
+    hours = Math.floor((daysms) / (60 * 60 * 1000));
+    hoursms = ms % (60 * 60 * 1000);
+    minutes = Math.floor((hoursms) / (60 * 1000)) 
+    minutesms = ms % (60 * 1000);
+    sec = Math.floor((minutesms) / (1000));
+    return days + ":" + hours + ":" + minutes + ":" + sec;
+}
 
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
