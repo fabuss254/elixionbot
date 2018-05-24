@@ -48,6 +48,7 @@ case "help":
         .addField(prefix + "help", "Affiche la liste des commandes disponibles.");
     message.channel.send(help_embed);
 break;
+});
 
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
