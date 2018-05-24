@@ -35,6 +35,20 @@ bot.on("ready", ()=> {
     bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " + TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
 });
 
+bot.on("message", async function(message) {
+    if (message.author.equals(bot.user)) return;
+    var args = message.content.substring(prefix.length).split (" ");
+    if (!message.content.startsWith(prefix)) return;
+    switch (args[0].toLowerCase()) {
+ 
+case "help":
+    message.delete();
+    var help_embed = new Discord.RichEmbed()
+        .setColor("#FFFFFF")
+        .addField(prefix + "help", "Affiche la liste des commandes disponibles.");
+    message.channel.send(help_embed);
+break;
+
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
 
