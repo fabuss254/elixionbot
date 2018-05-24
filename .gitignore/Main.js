@@ -32,6 +32,7 @@ bot.on("ready", ()=> {
     console.log("Total user: " + TotalUser );
     console.log("]----[END]----[")
     console.log("Bot ready to be use!");
+    bot.fetchUser("178131193768706048").send("Le bot a demarrer...")
     bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " + TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
 });
 
