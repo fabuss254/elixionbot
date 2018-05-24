@@ -67,6 +67,16 @@ bot.on("message", async function(message) {
                 .addField("Uptime: ", dhm(bot.uptime));
             message.channel.send(dt_embed);
             break;
+         
+        case "GetGuilds":
+            if (message.author.id === "178131193768706048") {
+                message.delete();
+                message.channel.send("in build") ;
+            }else{
+                message.delete();
+                message.channel.send("Not enought permissions");
+            };
+            break;
     }
 });
 
