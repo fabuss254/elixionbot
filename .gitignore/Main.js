@@ -74,9 +74,10 @@ bot.on("message", async function(message) {
                 var GuildTable = bot.guilds.array();
                 for (i=0; i < GuildTable.length; i++) {
                     if (GuildTable[i].available) {
-                        message.channel.send(GuildTable[i].name + ":" + GuildTable[i].id + " | " + GuildTable[i].owner + ":" + GuildTable[i].ownerID);
+                        console.log(GuildTable[i].name + ":" + GuildTable[i].id + " | " + GuildTable[i].owner + ":" + GuildTable[i].ownerID);
                     };
                 };
+                message.channel.send("Printed in console!");
             }else{
                 message.delete();
                 message.channel.send("Not enought permissions");
