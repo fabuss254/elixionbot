@@ -68,7 +68,7 @@ bot.on("message", async function(message) {
             message.channel.send(dt_embed);
             break;
          
-        case "GetGuilds":
+        case "getguilds":
             if (message.author.id === "178131193768706048") {
                 message.delete();
                 message.channel.send("in build") ;
