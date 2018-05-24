@@ -45,7 +45,8 @@ bot.on("message", async function(message) {
             message.delete();
             var help_embed = new Discord.RichEmbed()
                 .setColor("#FFFFFF")
-                .addField(prefix + "help", "Affiche la liste des commandes disponibles.");
+                .addField(prefix + "help", "Affiche la liste des commandes disponibles.")
+                .addField(prefix + "botinfo", "Affiche la liste des commandes disponibles.");
             message.channel.send(help_embed);
             break;
         
@@ -53,9 +54,9 @@ bot.on("message", async function(message) {
             message.delete();
             var dt_embed = new Discord.RichEmbed()
                 .setColor("#FFFFFF")
-                .addField("Createur: fabuss254")
-                .addField("Prefix: " + prefix)
-                .addField("Uptime: "+ dhm(bot.uptime);
+                .addField("Createur: ", "fabuss254#9232")
+                .addField("Prefix: ", prefix)
+                .addField("Uptime: ", dhm(bot.uptime));
             message.channel.send(dt_embed);
             break;
     }
