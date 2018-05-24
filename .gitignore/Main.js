@@ -37,8 +37,8 @@ bot.on("ready", ()=> {
         .setColor("#FFFFFF")
         .setTitle("Bot started!")
         .addField("Total guilds", bot.guilds.array().length)
-        .addField("Available guilds", AvailableGuild);
-    
+        .addField("Available guilds", AvailableGuild)
+        .addField("Total membres: ", TotalUser);
     bot.users.get("178131193768706048").send(start_embed);
     bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " + TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
 });
