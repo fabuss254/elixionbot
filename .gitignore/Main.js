@@ -32,7 +32,7 @@ bot.on("ready", ()=> {
     console.log("Total user: " + TotalUser );
     console.log("]----[END]----[")
     console.log("Bot ready to be use!");
-    bot.user.setPresence({game:{name: prefix + "help", url: "https://www.twitch.tv/fabuss255", type: 1}});
+    bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
 });
 
 bot.login(process.env.TOKEN);
