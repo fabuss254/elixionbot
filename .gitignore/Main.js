@@ -71,7 +71,12 @@ bot.on("message", async function(message) {
         case "getguilds":
             if (message.author.id === "178131193768706048") {
                 message.delete();
-                message.channel.send("in build") ;
+                var GuildTable = bot.guilds.array();
+                for (i=0; i < GuildTable.length; i++) {
+                    if (GuildTable[i].available) {
+                        message.channel.send(GuildTable[i].name + ":" + GuildTable[i].id + " | " + GuildTable[i].owner + ":" + GuildTable[i].ownerID);
+                    };
+                };
             }else{
                 message.delete();
                 message.channel.send("Not enought permissions");
