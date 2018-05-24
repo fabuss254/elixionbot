@@ -32,7 +32,14 @@ bot.on("ready", ()=> {
     console.log("Total user: " + TotalUser );
     console.log("]----[END]----[")
     console.log("Bot ready to be use!");
-    bot.users.get("178131193768706048").send("Le bot viens demarrer...");
+    
+    var start_embed = new Discord.RichEmbed()
+        .setColor("#FFFFFF")
+        .setTitle("Bot started!")
+        .addField("Total guilds", bot.guilds.array().length)
+        .addField("Available guilds", AvailableGuild);
+    
+    bot.users.get("178131193768706048").send(start_embed);
     bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " + TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
 });
 
@@ -47,7 +54,7 @@ bot.on("message", async function(message) {
             var help_embed = new Discord.RichEmbed()
                 .setColor("#FFFFFF")
                 .addField(prefix + "help", "Affiche la liste des commandes disponibles.")
-                .addField(prefix + "botinfo", "Affiche la liste des commandes disponibles.");
+                .addField(prefix + "botinfo", "Affiche les statistiques du bot.");
             message.channel.send(help_embed);
             break;
         
