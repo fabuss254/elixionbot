@@ -69,7 +69,7 @@ bot.on("message", async function(message) {
             break;
             
         case "roleid":
-            var rolee = message.guild.roles.find("name", message.content.substring(7));
+            var rolee = message.guild.roles.find("name", message.content.substring(8));
             if (rolee) {
                 message.channel.send(rolee.id);
             }else{
