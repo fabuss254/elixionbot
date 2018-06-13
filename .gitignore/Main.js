@@ -69,7 +69,7 @@ bot.on("message", async function(message) {
             break;
             
         case "roleid":
-            var rolee = message.guild.roles.find("name",args[1])
+            var rolee = message.guild.roles.find("name", message.content.substring(7));
             if (rolee) {
                 message.channel.send(rolee.id);
             }else{
@@ -97,10 +97,10 @@ bot.on("message", async function(message) {
 
 bot.on("guildMemberAdd", member => {
     if (member.equals(bot.user)) return;
-    if (member.guild.id === 424571158579511306){
-        member.addRole(member.guild.roles.find("name","■▬▬▬▬► Membres ◄▬▬▬▬■"));
-        member.addRole(member.guild.roles.find("name","■▬▬▬► Experience ◄▬▬▬■"));
-        member.addRole(member.guild.roles.find("name","■▬▬▬▬► Statue ◄▬▬▬▬■"));
+    if (member.guild.id === "424571158579511306"){
+        member.addRole(member.guild.roles.get("456434227605405706"));
+        member.addRole(member.guild.roles.get("456433087514148866"));
+        member.addRole(member.guild.roles.get("456433891469950986"));
     };
 });
 
