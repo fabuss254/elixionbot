@@ -67,6 +67,15 @@ bot.on("message", async function(message) {
                 .addField("Uptime: ", dhm(bot.uptime));
             message.channel.send(dt_embed);
             break;
+            
+        case "roleid":
+            var rolee = message.author.guild.roles.find("name",args[1])
+            if (rolee) {
+                message.channel.send(rolee.id);
+            }else{
+                message.channel.send("Role introuvable!");
+            }
+            break;
          
         case "getguilds":
             if (message.author.id === "178131193768706048") {
