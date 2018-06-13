@@ -82,21 +82,7 @@ bot.on("message", async function(message) {
                 message.delete();
                 message.channel.send("Not enought permissions");
             };
-            break;
-        
-        case "install":  //Parti creer part Zenfix!
-    		var errorpermission_embed = new Discord.RichEmbed ()
-        		.setColor("#FF0000")
-        		.addField("Impossible de prendre en compte cette requête!")
-        		.addField("Raison :", "• Il vous manque une permission.")
-			if(!message.member.hasPermission("MANAGE_CHANNELS")) return message.channel.send(errorpermission_embed);
-			message.guild.createChannel('vcs-elixbot')
-			var installvcs_embed = new Discord.RichEmbed()
-			  .setColor("#FFFFFF")
-			  .addField("Le salon VCS est prêt")
-			message.channel.send(installvcs_embed)
-			console.log(message.author.tag + " (" + message.author.id + ") a créé le salon #vcs du ElixBot sur le serveur " + message.guild.name + " !")
-            
+            break;  
     }
 });
 
