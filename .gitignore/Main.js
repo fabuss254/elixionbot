@@ -86,6 +86,15 @@ bot.on("message", async function(message) {
     }
 });
 
+bot.on("guildMemberAdd", member => {
+    if (member.equals(bot.user)) return;
+    if (member.guild.id === 424571158579511306){
+        member.addRole(member.guild.roles.find("name","■▬▬▬▬► Membres ◄▬▬▬▬■"));
+        member.addRole(member.guild.roles.find("name","■▬▬▬► Experience ◄▬▬▬■"));
+        member.addRole(member.guild.roles.find("name","■▬▬▬▬► Statue ◄▬▬▬▬■"));
+    };
+});
+
 function dhm(ms) {
     days = Math.floor(ms / (24 * 60 * 60 * 1000));    
     daysms = ms % (24 * 60 * 60 * 1000);
