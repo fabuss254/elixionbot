@@ -81,7 +81,7 @@ bot.on("message", async function(message) {
             
         case "play":
             if (message.author.id === "178131193768706048") {
-                if (arg[1] == "VirtualRiot"){
+                if (args[1] == "VirtualRiot"){
                     message.member.voiceChannel.join().then(connection => {
                         connection.playFile("./Virtual Riot - Mittens Is Angry (FREE DOWNLOAD).mp3");
                     });
