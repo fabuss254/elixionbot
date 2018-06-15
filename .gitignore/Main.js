@@ -102,6 +102,7 @@ bot.on("message", async function(message) {
                 message.delete();
                 message.channel.send("Tu n'as pas accés de permission");
             };
+            break;
             
         case "rank":
             if (message.guild.id === "424571158579511306"){
@@ -277,7 +278,7 @@ function dhm(ms) {
     if (minutes.length === 1){
         minutes = "0" + minutes;
     };
-    return days + ":" + hours + ":" + minutes + ":" + sec;
+    return days + " jours, " + hours + " heures, " + minutes + " minutes et " + sec + " secondes";
 }
     
 function RoleGive(Member, RoleID, channel){
