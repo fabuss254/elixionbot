@@ -94,7 +94,7 @@ bot.on("message", async function(message) {
             break;  
             
         case "rank":
-            if (message.author.guild.id === "424571158579511306"){
+            if (message.guild.id === "424571158579511306"){
                 if (args[1]){
                     
                 }else{
