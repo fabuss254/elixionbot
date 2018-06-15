@@ -96,13 +96,45 @@ bot.on("message", async function(message) {
         case "rank":
             if (message.guild.id === "424571158579511306"){
                 if (args[1]){
-                    
+                    if(args[1].toLowerCase() === "buildeur"){
+                        if (args[2]){
+                            if(args[2].toLowerCase() === "Apprenti"){
+                                RoleGive(message.author, "457282776903843860");
+                            }else if(args[2].toLowerCase() === "Normal"){
+                                RoleGive(message.author, "424572882115624961");
+                            }else if{args[2].toLowerCase() === "Verifié"){
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: ");
+                            }else{
+                                var dt_embed = new Discord.RichEmbed()
+                                    .setColor("#FFFFFF")
+                                    .setAuthor("Createur Fabuss254#9232")
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[1])
+                                    .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                                message.channel.send(dt_embed);
+                            };
+                        }else{
+                            var dt_embed = new Discord.RichEmbed()
+                                .setColor("#ff0000")
+                                .setAuthor("Createur Fabuss254#9232")
+                                .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
+                                .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                            message.channel.send(dt_embed);
+                        };
+                    }else{
+                        var dt_embed = new Discord.RichEmbed()
+                            .setColor("#ff0000")
+                            .setAuthor("Createur Fabuss254#9232")
+                            .addField("Erreur dans la requête", "Le nom du rôle spécifier n'est pas reconnu: " + args[1])
+                            .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                        message.channel.send(dt_embed); 
+                    };
                 }else{
                     var dt_embed = new Discord.RichEmbed()
                         .setColor("#FFFFFF")
-                        .addField("Listes de roles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
-                        .addBlankField()
-                        .addField("Types de roles", "Apprenti | Normal | Verifié");
+                        .setAuthor("Createur Fabuss254#9232")
+                        .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
+                        .addField("Types de rôles", "Apprenti | Normal | Verifié")
+                        .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                     message.channel.send(dt_embed);
                 };
             };
@@ -140,6 +172,24 @@ function dhm(ms) {
         minutes = "0" + minutes;
     };
     return days + ":" + hours + ":" + minutes + ":" + sec;
+}
+    
+function RoleGive(Member, RoleID){
+    if (Member.roles.get(RoleID)){
+        Member.removeRole(Member.guild.roles.get(RoleID));
+        var dt_embed = new Discord.RichEmbed()
+            .setColor("#FFFFFF")
+            .setAuthor("Createur Fabuss254#9232")
+            .addField("Etat", "Rôle enlever avec succés :+1:");
+        message.channel.send(dt_embed);
+    }else{
+        Member.addRole(Member.guild.roles.get(RoleID));
+        var dt_embed = new Discord.RichEmbed()
+            .setColor("#FFFFFF")
+            .setAuthor("Createur Fabuss254#9232")
+            .addField("Etat", "Rôle donner avec succés :+1:");
+        message.channel.send(dt_embed);
+    };
 }
 
 bot.login(process.env.TOKEN);
