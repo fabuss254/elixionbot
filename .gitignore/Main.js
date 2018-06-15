@@ -100,12 +100,7 @@ bot.on("message", async function(message) {
                 }else{
                     var dt_embed = new Discord.RichEmbed()
                         .setColor("#FFFFFF")
-                        .setTitle("Listes de roles")
-                        .addField("Buildeur")
-                        .addField("Modélisateur")
-                        .addField("Scripteur")
-                        .addField("UI/UX designer")
-                        .addField("Animateur")
+                        .addField("Listes de roles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
                         .addBlankField()
                         .addField("Types de roles", "Apprenti | Normal | Verifié");
                     message.channel.send(dt_embed);
