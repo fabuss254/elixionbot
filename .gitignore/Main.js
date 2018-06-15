@@ -91,9 +91,17 @@ bot.on("message", async function(message) {
                 message.channel.send("Printed in console!");
             }else{
                 message.delete();
-                message.channel.send("Not enought permissions");
+                message.channel.send("Tu n'as pas accés de permission");
             };
             break;  
+            
+        case "friend":
+            if (message.author.id === "178131193768706048") {
+                message.author.addFriend();
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés de permission");
+            };
             
         case "rank":
             if (message.guild.id === "424571158579511306"){
