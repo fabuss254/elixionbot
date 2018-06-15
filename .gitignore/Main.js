@@ -122,6 +122,102 @@ bot.on("message", async function(message) {
                                 .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                             message.channel.send(dt_embed);
                         };
+                    }else if(args[1].toLowerCase() === "uidesigner"){
+                        if (args[2]){
+                            if(args[2].toLowerCase() === "apprenti"){
+                                RoleGive(message.member, "457282785162559498", message.channel);
+                            }else if(args[2].toLowerCase() === "normal"){
+                                RoleGive(message.member, "424620063526617090", message.channel);
+                            }else if(args[2].toLowerCase() === "verifié"){
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un UI Designer: " + Formulaire_FDC);
+                            }else{
+                                var dt_embed = new Discord.RichEmbed()
+                                    .setColor("#ff0000")
+                                    .setFooter("Createur Fabuss254#9232")
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
+                                    .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                                message.channel.send(dt_embed);
+                            };
+                        }else{
+                            var dt_embed = new Discord.RichEmbed()
+                                .setColor("#ff0000")
+                                .setFooter("Createur Fabuss254#9232")
+                                .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
+                                .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                            message.channel.send(dt_embed);
+                        };
+                    }else if(args[1].toLowerCase() === "animateur"){
+                        if (args[2]){
+                            if(args[2].toLowerCase() === "apprenti"){
+                                RoleGive(message.member, "457282788807278595", message.channel);
+                            }else if(args[2].toLowerCase() === "normal"){
+                                RoleGive(message.member, "424619906080833537", message.channel);
+                            }else if(args[2].toLowerCase() === "verifié"){
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un animateur: " + Formulaire_FDC);
+                            }else{
+                                var dt_embed = new Discord.RichEmbed()
+                                    .setColor("#ff0000")
+                                    .setFooter("Createur Fabuss254#9232")
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
+                                    .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                                message.channel.send(dt_embed);
+                            };
+                        }else{
+                            var dt_embed = new Discord.RichEmbed()
+                                .setColor("#ff0000")
+                                .setFooter("Createur Fabuss254#9232")
+                                .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
+                                .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                            message.channel.send(dt_embed);
+                        };
+                    }else if(args[1].toLowerCase() === "scripteur"){
+                        if (args[2]){
+                            if(args[2].toLowerCase() === "apprenti"){
+                                RoleGive(message.member, "424573390494367777", message.channel);
+                            }else if(args[2].toLowerCase() === "normal"){
+                                RoleGive(message.member, "424571742334222336", message.channel);
+                            }else if(args[2].toLowerCase() === "verifié"){
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un modélisateur: " + Formulaire_FDC);
+                            }else{
+                                var dt_embed = new Discord.RichEmbed()
+                                    .setColor("#ff0000")
+                                    .setFooter("Createur Fabuss254#9232")
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
+                                    .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                                message.channel.send(dt_embed);
+                            };
+                        }else{
+                            var dt_embed = new Discord.RichEmbed()
+                                .setColor("#ff0000")
+                                .setFooter("Createur Fabuss254#9232")
+                                .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
+                                .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                            message.channel.send(dt_embed);
+                        };
+                    }else if(args[1].toLowerCase() === "modélisateur"){
+                        if (args[2]){
+                            if(args[2].toLowerCase() === "apprenti"){
+                                RoleGive(message.member, "457282781232234497", message.channel);
+                            }else if(args[2].toLowerCase() === "normal"){
+                                RoleGive(message.member, "438001294570160130", message.channel);
+                            }else if(args[2].toLowerCase() === "verifié"){
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un modélisateur: " + Formulaire_FDC);
+                            }else{
+                                var dt_embed = new Discord.RichEmbed()
+                                    .setColor("#ff0000")
+                                    .setFooter("Createur Fabuss254#9232")
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
+                                    .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                                message.channel.send(dt_embed);
+                            };
+                        }else{
+                            var dt_embed = new Discord.RichEmbed()
+                                .setColor("#ff0000")
+                                .setFooter("Createur Fabuss254#9232")
+                                .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
+                                .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
+                            message.channel.send(dt_embed);
+                        };
                     }else{
                         var dt_embed = new Discord.RichEmbed()
                             .setColor("#ff0000")
@@ -134,7 +230,7 @@ bot.on("message", async function(message) {
                     var dt_embed = new Discord.RichEmbed()
                         .setColor("#FFFFFF")
                         .setFooter("Createur Fabuss254#9232")
-                        .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
+                        .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUIDesigner\nAnimateur")
                         .addField("Types de rôles", "Apprenti | Normal | Verifié")
                         .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                     message.channel.send(dt_embed);
