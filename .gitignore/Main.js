@@ -92,6 +92,25 @@ bot.on("message", async function(message) {
                 message.channel.send("Not enought permissions");
             };
             break;  
+            
+        case "rank":
+            if (message.author.id === "424571158579511306"){
+                if (arg[1]){
+                    
+                }else{
+                    var dt_embed = new Discord.RichEmbed()
+                        .setColor("#FFFFFF")
+                        .setTitle("Listes de roles")
+                        .addField("Buildeur")
+                        .addField("Modélisateur")
+                        .addField("Scripteur")
+                        .addField("UI/UX designer")
+                        .addField("Animateur")
+                        .addBlankField()
+                        .addField("Types de roles", "Apprenti | Normal | Verifié")
+                    message.channel.send(dt_embed);
+                }
+            }
     }
 });
 
