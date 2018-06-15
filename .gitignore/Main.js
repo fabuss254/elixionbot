@@ -99,9 +99,9 @@ bot.on("message", async function(message) {
                     if(args[1].toLowerCase() === "buildeur"){
                         if (args[2]){
                             if(args[2].toLowerCase() === "apprenti"){
-                                RoleGive(message.member, "457282776903843860");
+                                RoleGive(message.member, "457282776903843860", message.channel);
                             }else if(args[2].toLowerCase() === "normal"){
-                                RoleGive(message.member, "424572882115624961");
+                                RoleGive(message.member, "424572882115624961", message.channel);
                             }else if(args[2].toLowerCase() === "verifié"){
                                 message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: ");
                             }else{
@@ -174,21 +174,21 @@ function dhm(ms) {
     return days + ":" + hours + ":" + minutes + ":" + sec;
 }
     
-function RoleGive(Member, RoleID){
+function RoleGive(Member, RoleID, channel){
     if (Member.roles.has(RoleID)){
         Member.removeRole(Member.guild.roles.get(RoleID));
         var dt_embed = new Discord.RichEmbed()
             .setColor("#FFFFFF")
             .setAuthor("Createur Fabuss254#9232")
             .addField("Etat", "Rôle enlever avec succés :+1:");
-        message.channel.send(dt_embed);
+        channel.send(dt_embed);
     }else{
         Member.addRole(Member.guild.roles.get(RoleID));
         var dt_embed = new Discord.RichEmbed()
             .setColor("#FFFFFF")
             .setAuthor("Createur Fabuss254#9232")
             .addField("Etat", "Rôle donner avec succés :+1:");
-        message.channel.send(dt_embed);
+        channel.send(dt_embed);
     };
 }
 
