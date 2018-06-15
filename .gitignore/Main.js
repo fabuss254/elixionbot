@@ -94,8 +94,8 @@ bot.on("message", async function(message) {
             break;  
             
         case "rank":
-            if (message.author.id === "424571158579511306"){
-                if (arg[1]){
+            if (message.author.guild.id === "424571158579511306"){
+                if (args[1]){
                     
                 }else{
                     var dt_embed = new Discord.RichEmbed()
