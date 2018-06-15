@@ -11,6 +11,8 @@ var footer = Preferences.Footer_Embed;
 
 var bot = new Discord.Client();
 
+var Formulaire_FDC = "";
+
 /* EVENEMENT */
 
 bot.on("ready", ()=> {
@@ -103,11 +105,11 @@ bot.on("message", async function(message) {
                             }else if(args[2].toLowerCase() === "normal"){
                                 RoleGive(message.member, "424572882115624961", message.channel);
                             }else if(args[2].toLowerCase() === "verifié"){
-                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: ");
+                                message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: " + Formulaire_FDC);
                             }else{
                                 var dt_embed = new Discord.RichEmbed()
-                                    .setColor("#FFFFFF")
-                                    .setAuthor("Createur Fabuss254#9232")
+                                    .setColor("#ff0000")
+                                    .setFooter("Createur Fabuss254#9232")
                                     .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
                                     .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                                 message.channel.send(dt_embed);
@@ -115,7 +117,7 @@ bot.on("message", async function(message) {
                         }else{
                             var dt_embed = new Discord.RichEmbed()
                                 .setColor("#ff0000")
-                                .setAuthor("Createur Fabuss254#9232")
+                                .setFooter("Createur Fabuss254#9232")
                                 .addField("Erreur dans la requête", "Le type du rôle doit être spécifier")
                                 .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                             message.channel.send(dt_embed);
@@ -123,7 +125,7 @@ bot.on("message", async function(message) {
                     }else{
                         var dt_embed = new Discord.RichEmbed()
                             .setColor("#ff0000")
-                            .setAuthor("Createur Fabuss254#9232")
+                            .setFooter("Createur Fabuss254#9232")
                             .addField("Erreur dans la requête", "Le nom du rôle spécifier n'est pas reconnu: " + args[1])
                             .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                         message.channel.send(dt_embed); 
@@ -131,7 +133,7 @@ bot.on("message", async function(message) {
                 }else{
                     var dt_embed = new Discord.RichEmbed()
                         .setColor("#FFFFFF")
-                        .setAuthor("Createur Fabuss254#9232")
+                        .setFooter("Createur Fabuss254#9232")
                         .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
                         .addField("Types de rôles", "Apprenti | Normal | Verifié")
                         .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
@@ -179,14 +181,14 @@ function RoleGive(Member, RoleID, channel){
         Member.removeRole(Member.guild.roles.get(RoleID));
         var dt_embed = new Discord.RichEmbed()
             .setColor("#FFFFFF")
-            .setAuthor("Createur Fabuss254#9232")
+            .setFooter("Createur Fabuss254#9232")
             .addField("Etat", "Rôle enlever avec succés :+1:");
         channel.send(dt_embed);
     }else{
         Member.addRole(Member.guild.roles.get(RoleID));
         var dt_embed = new Discord.RichEmbed()
             .setColor("#FFFFFF")
-            .setAuthor("Createur Fabuss254#9232")
+            .setFooter("Createur Fabuss254#9232")
             .addField("Etat", "Rôle donner avec succés :+1:");
         channel.send(dt_embed);
     };
