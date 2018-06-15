@@ -99,9 +99,9 @@ bot.on("message", async function(message) {
                     if(args[1].toLowerCase() === "buildeur"){
                         if (args[2]){
                             if(args[2].toLowerCase() === "apprenti"){
-                                RoleGive(message.author, "457282776903843860");
+                                RoleGive(message.member, "457282776903843860");
                             }else if(args[2].toLowerCase() === "normal"){
-                                RoleGive(message.author, "424572882115624961");
+                                RoleGive(message.member, "424572882115624961");
                             }else if(args[2].toLowerCase() === "verifié"){
                                 message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: ");
                             }else{
