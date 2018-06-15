@@ -107,10 +107,11 @@ bot.on("message", async function(message) {
                         .addField("UI/UX designer")
                         .addField("Animateur")
                         .addBlankField()
-                        .addField("Types de roles", "Apprenti | Normal | Verifié")
+                        .addField("Types de roles", "Apprenti | Normal | Verifié");
                     message.channel.send(dt_embed);
-                }
-            }
+                };
+            };
+            break;
     }
 });
 
