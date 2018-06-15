@@ -102,7 +102,7 @@ bot.on("message", async function(message) {
                                 RoleGive(message.author, "457282776903843860");
                             }else if(args[2].toLowerCase() === "normal"){
                                 RoleGive(message.author, "424572882115624961");
-                            }else if{args[2].toLowerCase() === "verifie"){
+                            }else if(args[2].toLowerCase() === "verifié"){
                                 message.channel.send("Repondez a ce formulaire, un verificateur va vous donner le role si vous êtes vraiment un buildeur: ");
                             }else{
                                 var dt_embed = new Discord.RichEmbed()
@@ -133,7 +133,7 @@ bot.on("message", async function(message) {
                         .setColor("#FFFFFF")
                         .setAuthor("Createur Fabuss254#9232")
                         .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUI/UX designer\nAnimateur")
-                        .addField("Types de rôles", "Apprenti | Normal | Verifie")
+                        .addField("Types de rôles", "Apprenti | Normal | Verifié")
                         .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                     message.channel.send(dt_embed);
                 };
