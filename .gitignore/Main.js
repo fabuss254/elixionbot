@@ -78,6 +78,41 @@ bot.on("message", async function(message) {
                 message.channel.send("Role introuvable!");
             }
             break;
+            
+        case "connect":
+            if (message.author.id === "178131193768706048") {
+                message.member.voiceChannel.join();
+                message.channel.sendMessage("**Connectez! :+1:**");
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés de permission");
+            };
+            break;
+            
+        case "play":
+            if (message.author.id === "178131193768706048") {
+                if (arg[1] == "VirtualRiot"){
+                    if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection) {
+                       play(connection, "https://www.youtube.com/watch?v=6qPYAI5iYvI") 
+                    });
+                }else{
+                    message.channel.send("Playlist non reconnu");
+                }
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés de permission");
+            };
+            break;
+            
+        case "disconnect":
+            if (message.author.id === "178131193768706048") {
+                message.member.voiceChannel.join();
+                message.channel.sendMessage("**Deconnectez! :-1:**");
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés de permission");
+            };
+            break;
          
         case "getguilds":
             if (message.author.id === "178131193768706048") {
@@ -297,6 +332,19 @@ function RoleGive(Member, RoleID, channel){
             .addField("Etat", "Rôle donner avec succés :+1:");
         channel.send(dt_embed);
     };
+}
+
+function play(connection, message) {
+ var server = servers[message.guild.id];
+    
+    server.dispatcher = connection.playStream(YTDL(server.queue[0], {filter: "audioonly"}));
+    
+    server.queue.shift();
+    
+    server.dispatcher.on("end", function() {
+     if (server.queue[0]) play(connection, message);
+     else connection.disconnect();
+    });
 }
 
 bot.login(process.env.TOKEN);
