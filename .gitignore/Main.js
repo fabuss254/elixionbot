@@ -108,7 +108,7 @@ bot.on("message", async function(message) {
                                 var dt_embed = new Discord.RichEmbed()
                                     .setColor("#FFFFFF")
                                     .setAuthor("Createur Fabuss254#9232")
-                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[1])
+                                    .addField("Erreur dans la requête", "Le type du rôle spécifier n'est pas reconnu: " + args[2])
                                     .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                                 message.channel.send(dt_embed);
                             };
@@ -175,7 +175,7 @@ function dhm(ms) {
 }
     
 function RoleGive(Member, RoleID){
-    if (Member.roles.get(RoleID)){
+    if (Member.roles.has(RoleID)){
         Member.removeRole(Member.guild.roles.get(RoleID));
         var dt_embed = new Discord.RichEmbed()
             .setColor("#FFFFFF")
