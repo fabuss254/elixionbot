@@ -106,7 +106,7 @@ bot.on("message", async function(message) {
             
         case "disconnect":
             if (message.author.id === "178131193768706048") {
-                message.member.voiceChannel.join();
+                message.member.voiceChannel.leave();
                 message.channel.sendMessage("**Deconnectez! :-1:**");
             }else{
                 message.delete();
