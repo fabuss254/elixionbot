@@ -11,7 +11,7 @@ var footer = Preferences.Footer_Embed;
 
 var bot = new Discord.Client();
 
-var Formulaire_FDC = "";
+var Formulaire_FDC = "https://goo.gl/forms/Duc9Hq73woo2jrwE3";
 
 /* EVENEMENT */
 
