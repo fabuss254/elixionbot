@@ -256,7 +256,7 @@ bot.on("message", async function(message) {
                         .setColor("#FFFFFF")
                         .setFooter("Createur Fabuss254#9232")
                         .addField("Listes des rôles", "Buildeur\nModélisateur\nScripteur\nUIDesigner\nAnimateur")
-                        .addField("Types de rôles", "Apprenti | Normal | Verifié")
+                        .addField("Types de rôle", "Apprenti | Normal | Verifié")
                         .addField("Syntaxe", ".rank <Nom du rôle> <Type du rôle>");
                     message.channel.send(dt_embed);
                 };
