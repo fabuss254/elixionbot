@@ -6,6 +6,10 @@ const Discord = require("discord.js");
 
 const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
+
+const ytdl = require('ytdl-core');
+const streamOptions = { seek: 0, volume: 1 };
+
 var prefix = Preferences.Prefix;
 var footer = Preferences.Footer_Embed;
 
@@ -81,13 +85,10 @@ bot.on("message", async function(message) {
             
         case "play":
             if (message.author.id === "178131193768706048") {
-                if (args[1] == "VirtualRiot"){
-                    message.member.voiceChannel.join().then(connection => {
-                        connection.playFile("./Virtual Riot - Mittens Is Angry (FREE DOWNLOAD).mp3");
-                    });
-                }else{
-                    message.channel.send("Playlist non reconnu");
-                }
+                message.member.voiceChannel.join().then(connection => {
+                    const stream = ytdl(args[1], { filter : 'audioonly' });
+                    const dispatcher = connection.playStream(stream, streamOptions);
+                }).catch(console.error);
             }else{
                 message.delete();
                 message.channel.send("Tu n'as pas accés de permission");
