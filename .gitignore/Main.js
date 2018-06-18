@@ -263,6 +263,28 @@ bot.on("message", async function(message) {
                 };
             };
             break;
+            
+        case "deny":
+            if (message.guild.id === "424571158579511306"){
+                if (message.member.roles.has(RoleID)){
+                    var MentionInMessage = args[1].substring(2,args[1].lenght).substring(0, args[1].length-3);
+                    if (message.member.guild.members.get(MentionInMessage)){
+                        var dt_embed = new Discord.RichEmbed()
+                            .setColor("#FFFFFF")
+                            .setFooter("Createur Fabuss254#9232")
+                            .setTitle("French developers community message")
+                            .addField("Vous avez été refusée", "Un Verificateur à refuser votre demande de role verifier, voici la raison:\n```" + message.content.substring(5,message.content.lenght).substring(2+MentionInMessage.lenght+3) + "```")
+                            .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
+                        message.member.guild.members.get(MentionInMessage).send(start_embed);
+                        
+                        message.channel.send("Envoyer avec succés! :+1:");
+                    }else{
+                        message.channel.send("L'id " + MentionInMessage + " est introuvable!");
+                    };
+                }else{
+                    message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!");
+                };
+            };
     }
 });
 
