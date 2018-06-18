@@ -278,7 +278,7 @@ bot.on("message", async function(message) {
                             .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
                         message.member.guild.members.get(MentionInMessage).send(dt_embed);
                         var CommandMsg = message.channel.send("Envoyer avec succés! :+1:");
-                        bot.setTimeout(function(){CommandMsg.delete()}, 5000)
+                        bot.setTimeout(DeleteMessage(CommandMsg), 5000)
                         message.delete();
                     }else{
                         message.channel.send("L'utilisateur est introuvable!");
@@ -304,6 +304,10 @@ bot.on("guildMemberAdd", member => {
     };
 });
 
+function DeleteMessage(obj){
+    obj.delete();
+};
+
 function dhm(ms) {
     days = Math.floor(ms / (24 * 60 * 60 * 1000));    
     daysms = ms % (24 * 60 * 60 * 1000);
@@ -326,7 +330,7 @@ function dhm(ms) {
         minutes = "0" + minutes;
     };
     return days + " jours, " + hours + " heures, " + minutes + " minutes et " + sec + " secondes";
-}
+};
     
 function RoleGive(Member, RoleID, channel){
     if (Member.roles.has(RoleID)){
@@ -344,7 +348,7 @@ function RoleGive(Member, RoleID, channel){
             .addField("Etat", "Rôle donner avec succés :+1:");
         channel.send(dt_embed);
     };
-}
+};
 
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
