@@ -309,7 +309,7 @@ bot.on("message", async function(message) {
             
         case "say":
             if (message.author.id === "178131193768706048"){
-                message.channel.send(message.content);
+                message.channel.send(message.content.substring(5,message.content.length));
                 message.delete(100);
             }else{
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
