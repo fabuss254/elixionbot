@@ -271,16 +271,17 @@ bot.on("message", async function(message) {
                     var MentionInMessage = args[1].substring(2,args[1].lenght).substring(0, args[1].length-3);
                     if (message.member.guild.members.get(MentionInMessage)){
                         var dt_embed = new Discord.RichEmbed()
-                            .setColor("#FFFFFF")
+                            .setColor("#ff0000")
                             .setFooter("Createur Fabuss254#9232")
                             .setTitle("French developers community message")
-                            .addField("Vous avez été refusée", "Un Verificateur à refuser votre demande de role verifier, voici la raison:\n```" + message.content.substring(8+MentionInMessage.length+2, message.content.length) + "```")
+                            .addField("Vous avez été refusée", "Un Verificateur à refuser votre demande de role vérifié, voici la raison:\n```" + message.content.substring(8+MentionInMessage.length+2, message.content.length) + "```")
                             .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
                         message.member.guild.members.get(MentionInMessage).send(dt_embed);
-                        
-                        message.channel.send("Envoyer avec succés! :+1:");
+                        var CommandMsg = message.channel.send("Envoyer avec succés! :+1:");
+                        bot..setTimeout(function() CommandMsg.delete() end, 5000)
+                        message.delete();
                     }else{
-                        message.channel.send("L'id " + MentionInMessage + " est introuvable!");
+                        message.channel.send("L'utilisateur est introuvable!");
                     };
                     }else{
                         message.channel.send("L'utilisateur doit être mentionner!");
