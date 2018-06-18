@@ -277,20 +277,20 @@ bot.on("message", async function(message) {
                             .addField("Vous avez été refusée", "Un Verificateur à refuser votre demande de role vérifié, voici la raison:\n```" + message.content.substring(8+MentionInMessage.length+2, message.content.length) + "```")
                             .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
                         message.member.guild.members.get(MentionInMessage).send(dt_embed);
-                        var CommandMsg = message.channel.send("Envoyer avec succés! :+1:");
-                        bot.setTimeout(DeleteMessage(CommandMsg), 5000)
-                        message.delete();
+                        message.channel.send("Envoyer avec succés! :+1:").then(msg => msg.delete(5000));
+                        
+                        message.delete(100);
                     }else{
-                        message.channel.send("L'utilisateur est introuvable!");
-                        message.delete();
+                        message.channel.send("L'utilisateur est introuvable!").then(msg => msg.delete(5000));
+                        message.delete(100);
                     };
                     }else{
-                        message.channel.send("L'utilisateur doit être mentionner!");
-                        message.delete();
+                        message.channel.send("L'utilisateur doit être mentionner!").then(msg => msg.delete(5000));
+                        message.delete(100);
                     }
                 }else{
-                    message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!");
-                    message.delete();
+                    message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
+                    message.delete(100);
                 };
             };
     }
@@ -303,10 +303,6 @@ bot.on("guildMemberAdd", member => {
         member.addRole(member.guild.roles.get("456433891469950986"));
     };
 });
-
-function DeleteMessage(obj){
-    obj.delete();
-};
 
 function dhm(ms) {
     days = Math.floor(ms / (24 * 60 * 60 * 1000));    
