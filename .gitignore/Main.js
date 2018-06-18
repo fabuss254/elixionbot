@@ -278,7 +278,7 @@ bot.on("message", async function(message) {
                             .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
                         message.member.guild.members.get(MentionInMessage).send(dt_embed);
                         var CommandMsg = message.channel.send("Envoyer avec succés! :+1:");
-                        bot.setTimeout(function() CommandMsg.delete() end, 5000)
+                        bot.setTimeout(function(){CommandMsg.delete()}, 5000)
                         message.delete();
                     }else{
                         message.channel.send("L'utilisateur est introuvable!");
