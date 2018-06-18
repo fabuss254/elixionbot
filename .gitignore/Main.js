@@ -266,7 +266,8 @@ bot.on("message", async function(message) {
             
         case "deny":
             if (message.guild.id === "424571158579511306"){
-                if (message.member.roles.has(RoleID)){
+                if (message.member.roles.has("457508387102392330")){
+                    if (args[1]){
                     var MentionInMessage = args[1].substring(2,args[1].lenght).substring(0, args[1].length-3);
                     if (message.member.guild.members.get(MentionInMessage)){
                         var dt_embed = new Discord.RichEmbed()
@@ -281,6 +282,9 @@ bot.on("message", async function(message) {
                     }else{
                         message.channel.send("L'id " + MentionInMessage + " est introuvable!");
                     };
+                    }else{
+                        message.channel.send("L'utilisateur doit être mentionner!");
+                    }
                 }else{
                     message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!");
                 };
