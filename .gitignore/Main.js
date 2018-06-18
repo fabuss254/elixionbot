@@ -286,7 +286,7 @@ bot.on("message", async function(message) {
                             .setColor("#ff0000")
                             .setFooter("Createur Fabuss254#9232")
                             .setTitle("French developers community message")
-                            .addField("Vous avez été refusée", "Un Verificateur à refuser votre demande de role vérifié, voici la raison:\n```" + message.content.substring(8+MentionInMessage.length+2, message.content.length) + "```")
+                            .addField("Vous avez été refusée", "Un vérificateur à refusé votre demande de rôle vérifié, voici la raison:\n```" + message.content.substring(8+MentionInMessage.length+2, message.content.length) + "```")
                             .addField("Si vous souhaitez repasser le formulaire plus tard:", Formulaire_FDC);
                         message.member.guild.members.get(MentionInMessage).send(dt_embed);
                         message.channel.send("Envoyer avec succés! :+1:").then(msg => msg.delete(5000));
