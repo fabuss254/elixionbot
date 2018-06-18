@@ -315,6 +315,7 @@ bot.on("message", async function(message) {
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
                 message.delete(100);
             }
+            break;
     }
 });
 
