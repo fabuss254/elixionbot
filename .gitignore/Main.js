@@ -281,7 +281,7 @@ bot.on("message", async function(message) {
                         
                         message.delete(100);
                     }else{
-                        message.channel.send("L'utilisateur est introuvable!").then(msg => msg.delete(5000));
+                        message.channel.send("L'utilisateur est introuvable! ID: "+ MentionInMessage).then(msg => msg.delete(5000));
                         message.delete(100);
                     };
                     }else{
