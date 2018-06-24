@@ -263,6 +263,18 @@ bot.on("message", async function(message) {
                 };
             };
             break;
+           
+        case "francais":
+            if (message.guild.id === "424571158579511306"){
+                RoleGive(message.member, "460388194576236564", message.channel);
+            };
+        break;
+           
+        case "english":
+            if (message.guild.id === "424571158579511306"){
+                RoleGive(message.member, "460388247374266369", message.channel);
+            };
+        break;
             
         case "deny":
             if (message.guild.id === "424571158579511306"){
