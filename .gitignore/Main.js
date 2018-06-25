@@ -336,6 +336,8 @@ bot.on("guildMemberAdd", member => {
         member.addRole(member.guild.roles.get("456434227605405706"));
         member.addRole(member.guild.roles.get("456433087514148866"));
         member.addRole(member.guild.roles.get("456433891469950986"));
+        member.addRole(member.guild.roles.get("460388194576236564"));
+        member.addRole(member.guild.roles.get("460388247374266369"));
     }else if(member.guild.id === "460118416569794561"){
         member.addRole(member.guild.roles.get("460469694680530954"));
     };
