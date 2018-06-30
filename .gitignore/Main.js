@@ -341,7 +341,6 @@ bot.on("message", async function(message) {
                         });
                     
                         msg.react('✅');
-                     );
                     );
                 };
             }else{
