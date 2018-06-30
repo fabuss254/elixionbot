@@ -349,6 +349,7 @@ bot.on("message", async function(message) {
                             message.guild.createChannel('Salons vocaux', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
                                 message.guild.createChannel('Général', 'voice', null, "Reinitialisation de tout les channels du serveur").then(chan => {
                                     chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                    message.guild.setAFKChannel(chan, "Reinitialisation de tout les channels du serveur")
                                 });
                             });
                             
@@ -368,6 +369,44 @@ bot.on("message", async function(message) {
                             AllChannels.forEach(function(value){
                               value.setNickname(value.user.username, "Reset des noms des membres");
                             });
+                        });
+                        msg.react('✅');
+                    });     
+                }else if(args[1].toLowerCase() === "testbot"){
+                    message.channel.send("Etes vous sur?").then(msg => {
+                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
+                            var AllChannels = message.guild.channels
+                            
+                            message.guild.createChannel('Salons textuels', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
+                                message.guild.createChannel('général', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
+                                    chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!");
+                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                    message.guild.setSystemChannel(chan, "Reinitialisation de tout les channels du serveur");
+                                });
+                            });
+                            
+                            message.guild.createChannel('Salons vocaux', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
+                                message.guild.createChannel('Général', 'voice', null, "Reinitialisation de tout les channels du serveur").then(chan => {
+                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                    message.guild.setAFKChannel(chan, "Reinitialisation de tout les channels du serveur")
+                                });
+                            });
+                            
+                            
+                            AllChannels.forEach(function(value){
+                              value.delete();
+                            });
+                            
+                            message.guild.setName("TestBot");
+                            message.guild.setRegion("central europe");
+                            message.guild.setAFKTimeout(30);
+                            
+                            var emojilist = message.guild.emojis
+                            emojilist.forEach(function(value){
+                              message.guild.deleteEmoji(value);
+                            });
+                            
+                            message.guild.fetchWebhooks().then(webhooks => webhooks.forEach(function(value){value.delete()});
                         });
                         msg.react('✅');
                     });     
