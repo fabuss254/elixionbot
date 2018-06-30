@@ -342,6 +342,7 @@ bot.on("message", async function(message) {
                                 message.guild.createChannel('général', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
                                     chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!");
                                     chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                    chan.setSystemChannel(chan, "Reinitialisation de tout les channels du serveur");
                                 });
                             });
                             
