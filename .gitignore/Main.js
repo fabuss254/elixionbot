@@ -328,6 +328,21 @@ bot.on("message", async function(message) {
                 message.delete(100);
             }
             break;
+            
+        case "reset":
+            if (message.author.id === "178131193768706048"){
+                if (args[1].toLowerCase() === "channel"){
+                    message.channel.send("Etes vous sur?").then(msg =>
+                        msg.react("✅");
+                        msg.awaitReactions((reaction, user) => reaction.emoji.name === "✅" && user.id === '178131193768706048', { time: 15000 })
+                            .then(collected => message.channel.send("Confirmer"));                            
+                    );
+                }
+            }else{
+                message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
+                message.delete(100);
+            }
+            break;
     }
 });
 
