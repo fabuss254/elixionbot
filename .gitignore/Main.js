@@ -334,7 +334,7 @@ bot.on("message", async function(message) {
                 if (args[1].toLowerCase() === "channel"){
                     message.channel.send("Etes vous sur?").then(msg =>
                         msg.react("✅").then(msg.awaitReactions((reaction, user) => reaction.emoji.name === "✅" && user.id === '178131193768706048', { time: 15000 })
-                            .then(message.channel.send("Confirmer"));   
+                            .then(message.channel.send("Confirmer")));   
                        );
                     );
                 };
