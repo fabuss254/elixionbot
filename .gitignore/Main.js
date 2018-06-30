@@ -336,13 +336,21 @@ bot.on("message", async function(message) {
                 if (args[1].toLowerCase() === "channel"){
                     message.channel.send("Etes vous sur?").then(msg => {
                         msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
-                            message.channel.send("Confirmer, Reinitialisation de tout les channels en cours...");
-                            msg.delete(10);
                             var AllChannels = message.guild.channels
                             
-                            message.guild.createChannel('Default', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
-                                chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!")
+                            message.guild.createChannel('Salons textuels', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
+                                message.guild.createChannel('général', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
+                                    chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!");
+                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                });
                             });
+                            
+                            message.guild.createChannel('Salons vocaux', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
+                                message.guild.createChannel('Général', 'voice', null, "Reinitialisation de tout les channels du serveur").then(chan => {
+                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
+                                });
+                            });
+                            
                             
                             AllChannels.forEach(function(value){
                               value.delete();
