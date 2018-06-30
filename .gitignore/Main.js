@@ -333,9 +333,9 @@ bot.on("message", async function(message) {
             if (message.author.id === "178131193768706048"){
                 if (args[1].toLowerCase() === "channel"){
                     message.channel.send("Etes vous sur?").then(ggg => 
-                        ggg.awaitReactions((reaction, user) => reaction.emoji.name === '✅' && user.id === '178131193768706048', { time: 15000 }).then(message.channel.send("Confirmer"));
-                        ggg.react('✅');
-                      );
+                        ggg.awaitReactions((reaction, user) => (reaction.emoji.name === '✅' && user.id === '178131193768706048'), { time: 15000 }).then(message.channel.send("Confirmer"));
+                        
+                     );
                     );
                 };
             }else{
