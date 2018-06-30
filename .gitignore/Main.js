@@ -334,14 +334,12 @@ bot.on("message", async function(message) {
         case "reset":
             if (message.author.id === "178131193768706048"){
                 if (args[1].toLowerCase() === "channel"){
-                    message.channel.send("Etes vous sur?").then(msg => 
-                        let collector = msg.createReactionCollector(filter, { time: 5000 });
-                        collector.on('collect', (reaction, collector) => {
+                    var gg = message.channel.send("Etes vous sur?").then(msg => 
+                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
                             console.log('got a reaction');
                         });
-                    
-                        msg.react('✅');
                     );
+                    gg.react('✅');
                 };
             }else{
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
