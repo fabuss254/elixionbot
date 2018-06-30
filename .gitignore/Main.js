@@ -334,12 +334,22 @@ bot.on("message", async function(message) {
         case "reset":
             if (message.author.id === "178131193768706048"){
                 if (args[1].toLowerCase() === "channel"){
-                    var gg = message.channel.send("Etes vous sur?").then(msg => {
+                    message.channel.send("Etes vous sur?").then(msg => {
                         msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
-                            console.log('got a reaction');
+                            message.channel.send("Confirmer, Reinitialisation de tout les channels en cours...");
+                            msg.delete(10);
+                            var AllChannels = message.guild.channels
+                            
+                            message.guild.createChannel('Default', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
+                                chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!")
+                            });
+                            
+                            AllChannels.forEach(function(value){
+                              value.delete();
+                            });
                         });
+                        msg.react('✅');
                     });
-                    gg.react('✅');
                 };
             }else{
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
