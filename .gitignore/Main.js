@@ -350,6 +350,18 @@ bot.on("message", async function(message) {
                         });
                         msg.react('✅');
                     });
+                }else if(args[1].toLowerCase() === "name"){
+                    message.channel.send("Etes vous sur?").then(msg => {
+                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
+                            message.channel.send("Confirmer, Reinitialisation de tout les noms en cours...");
+                            msg.delete(10);
+                            var AllChannels = message.guild.members
+                            AllChannels.forEach(function(value){
+                              value.setNickname(value.user.username, "Reset des noms des membres");
+                            });
+                        });
+                        msg.react('✅');
+                    });     
                 };
             }else{
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
