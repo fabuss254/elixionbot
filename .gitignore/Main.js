@@ -334,11 +334,11 @@ bot.on("message", async function(message) {
         case "reset":
             if (message.author.id === "178131193768706048"){
                 if (args[1].toLowerCase() === "channel"){
-                    var gg = message.channel.send("Etes vous sur?").then(msg => 
+                    var gg = message.channel.send("Etes vous sur?").then(msg => {
                         msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
                             console.log('got a reaction');
                         });
-                    );
+                    });
                     gg.react('✅');
                 };
             }else{
