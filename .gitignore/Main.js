@@ -7,8 +7,6 @@ const Discord = require("discord.js");
 const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
 
-const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === '178131193768706048';
-
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 
@@ -325,99 +323,6 @@ bot.on("message", async function(message) {
             if (message.author.id === "178131193768706048"){
                 message.channel.send(message.content.substring(5,message.content.length));
                 message.delete(100);
-            }else{
-                message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
-                message.delete(100);
-            }
-            break;
-            
-        case "reset":
-            if (message.author.id === "178131193768706048"){
-                if (args[1].toLowerCase() === "channel"){
-                    message.channel.send("Etes vous sur?").then(msg => {
-                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
-                            var AllChannels = message.guild.channels
-                            
-                            message.guild.createChannel('Salons textuels', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
-                                message.guild.createChannel('général', 'text', null, "Reinitialisation de tout les channels du serveur").then(chan => {
-                                    chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!");
-                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
-                                    message.guild.setSystemChannel(chan, "Reinitialisation de tout les channels du serveur");
-                                });
-                            });
-                            
-                            message.guild.createChannel('Salons vocaux', 'category', null, "Reinitialisation de tout les channels du serveur").then(cat => {
-                                message.guild.createChannel('Général', 'voice', null, "Reinitialisation de tout les channels du serveur").then(chan => {
-                                    chan.setParent(cat, "Reinitialisation de tout les channels du serveur");
-                                    message.guild.setAFKChannel(chan, "Reinitialisation de tout les channels du serveur")
-                                });
-                            });
-                            
-                            
-                            AllChannels.forEach(function(value){
-                              value.delete();
-                            });
-                        });
-                        msg.react('✅');
-                    });
-                }else if(args[1].toLowerCase() === "name"){
-                    message.channel.send("Etes vous sur?").then(msg => {
-                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
-                            message.channel.send("Confirmer, Reinitialisation de tout les noms en cours...");
-                            msg.delete(10);
-                            var AllChannels = message.guild.members
-                            AllChannels.forEach(function(value){
-                              value.setNickname(value.user.username, "Reset des noms des membres");
-                            });
-                        });
-                        msg.react('✅');
-                    });     
-                }else if(args[1].toLowerCase() === "testbot"){
-                    message.channel.send("Etes vous sur?").then(msg => {
-                        msg.createReactionCollector(filter, { time: 5000 }).on('collect', (reaction, collector) => {
-                            var AllChannels = message.guild.channels
-                            
-                            message.guild.createChannel('Salons textuels', 'category', null, "Reinitialisation du serveur").then(cat => {
-                                message.guild.createChannel('général', 'text', null, "Reinitialisation du serveur").then(chan => {
-                                    chan.send("Tout les channels ont été reinitialiser... Voir logs pour plus de details!");
-                                    chan.setParent(cat, "Reinitialisation du serveur");
-                                    message.guild.setSystemChannel(chan, "Reinitialisation du serveur");
-                                });
-                            });
-                            
-                            message.guild.createChannel('Salons vocaux', 'category', null, "Reinitialisation du serveur").then(cat => {
-                                message.guild.createChannel('Général', 'voice', null, "Reinitialisation du serveur").then(chan => {
-                                    chan.setParent(cat, "Reinitialisation du serveur");
-                                    message.guild.setAFKChannel(chan, "Reinitialisation du serveur")
-                                });
-                            });
-                            
-                            
-                            AllChannels.forEach(function(value){
-                              value.delete();
-                            });
-                            
-                            message.guild.setName("Serveur full admin");
-                            message.guild.setRegion("eu-central");
-                            message.guild.setAFKTimeout(300);
-                            message.guild.setIcon("./wLBF7RUE.jpg");
-                            
-                            var emojilist = message.guild.emojis
-                            emojilist.forEach(function(value){
-                              message.guild.deleteEmoji(value);
-                            });
-                            
-                            var rolelist = message.guild.roles
-                            rolelist.forEach(function(value){
-                                if (value.id != "462666906931822602" && value.id != "462661649502044161" && value.id != "458316243015827456" && value.id != "462660306959728642"){
-                                    value.delete();
-                                };
-                            });
-                            
-                        });
-                        msg.react('✅');
-                    });     
-                };
             }else{
                 message.channel.send("<@" + message.member.id + ">, Vous n'avez pas la permission de faire cette commande!").then(msg => msg.delete(5000));
                 message.delete(100);
