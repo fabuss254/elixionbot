@@ -407,7 +407,11 @@ bot.on("message", async function(message) {
                               message.guild.deleteEmoji(value);
                             });
                             
-                            message.guild.fetchWebhooks().then(webhooks => {webhooks.forEach(function(value){value.delete()}});
+                            message.guild.fetchWebhooks().then(webhooks => {
+                                webhooks.forEach(function(value){
+                                    value.delete()
+                                });
+                            });
                         });
                         msg.react('✅');
                     });     
