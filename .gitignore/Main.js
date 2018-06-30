@@ -7,6 +7,8 @@ const Discord = require("discord.js");
 const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
 
+const filter = (reaction, user) => reaction.emoji.name === '✅' && user.id === '178131193768706048';
+
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 
@@ -333,8 +335,11 @@ bot.on("message", async function(message) {
             if (message.author.id === "178131193768706048"){
                 if (args[1].toLowerCase() === "channel"){
                     message.channel.send("Etes vous sur?").then(ggg => 
-                        ggg.awaitReactions((reaction, user) => (reaction.emoji.name === '✅' && user.id === '178131193768706048'), { time: 15000 }).then(message.channel.send("Confirmer"));
-                        
+                        ggg.react('✅');
+                        let collector = ggg.createReactionCollector(filter, { time: 5000 });
+                        collector.on('collect', (reaction, collector) => {
+                            console.log('got a reaction');
+                        });
                      );
                     );
                 };
