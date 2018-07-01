@@ -76,43 +76,57 @@ bot.on("message", async function(message) {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3, { time: 15000 });
                                     collector.on('collect', r => {
-                                           Choix.push({Reaction: r.emoji, Message: m})
-                                           message.channel.send("Choix ajouter:\n \nReaction = :" + r.emoji.toString() + ":\nChoix: " + m)
+                                            Choix.push({Reaction: r.emoji, Message: m})
+                                            message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m)
+                                            collector.stop()
                                     });  
                                 });
                                 
                             };
                         });
                         collector.on('end', collected => {
-                            message.channel.send("choisir le temp (en minute) avant la fin du sondage (2 minute pour repondre)");
+                            message.channel.send("choisir le temp (en minute) avant la fin du sondage (2 minute pour repondre | Max: ``Null``)");
                             const collector4 = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
                             collector4.on('collect', m => {
                                 var Temp = 0
                                 if (parseInt(m) == 0){
                                     Temp = 10
+                                }else if
                                 }else{
                                     Temp = parseInt(m)
                                 }
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
                                 Choix.forEach(function(v,i){
-                                    chois = chois + ":" + v.Reaction.toString() + ":" + " " + v.Message + "\n"
+                                    chois = chois + v.Reaction.toString() + " " + v.Message + "\n"
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
-                                message.channel.send(` 462595124602339328
+                                message.channel.send(` <@ 462595124602339328> (mention)
 
 **Nouveau sondage de <@` + message.member.id +`>**
+Question: `+ Question +`
 
-**Question**: `+ Question +`
-
-**Choix**\n`
+__**Choix**__\n`
 +
 chois
 +
 `
-**1 vote par personne (les votes en double ne seront pas prit en compte)**
-**Fin du sondage: **` + Date.now() + Temp*60*1000 )
-                            
+1 vote par personne (les votes en double ne seront pas prit en compte)
+Fin du sondage: ` + Date.now() + Temp*60*1000 ).then(msg => {
+                                    const filter3 = (reaction, user) => user.id === message.member.id
+                                    const collector = msg.createReactionCollector(filter3, { time: 15000 });
+                                    collector.on('collect', r => {
+                                           if (r.emoji.toString() == "✅"){
+                                               collector.stop();
+                                               message.channel.send("Sondage envoyer!")
+                                           }else if(r.emoji.toString() == "❎"){
+                                               collector.stop();
+                                               message.channel.send("Sondage annuler!")
+                                           };
+                                    }); 
+                                    
+                                    msg.react()
+                                });
                             });
                         });
                         
