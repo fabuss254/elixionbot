@@ -95,7 +95,7 @@ bot.on("message", async function(message) {
                                 var chois = ""
                                 Choix.ForEach(function(v,i){
                                     chois = chois + ":" + v.Reaction.name + ":" + " " + v.Message + "\n"
-                                }
+                                });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
                                 message.channel.send(` 462595124602339328
 
