@@ -57,9 +57,9 @@ bot.on("message", async function(message) {
     switch (args[0].toLowerCase()) {
  
         case "sondage":
-            if (message.guild.id === SlendArmy.GuildId){
+            if (message.guild.id === "337863843281764372"){
                 message.delete()
-                if (message.member.roles.has(SlendArmy.SondageRole)){
+                if (message.member.roles.has("416983347160678401")){
                     message.channel.send("Quelle est la question? (2 minute pour repondre)")
                     const filter2 = m => m.author.id === message.author.id;
                     const collector = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
