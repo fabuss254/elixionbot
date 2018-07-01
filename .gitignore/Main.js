@@ -74,7 +74,7 @@ bot.on("message", async function(message) {
                             }else{
                                 message.channel.send("Reagir a ce message avec la reaction")
                                 const filter3 = (reaction, user) => user.id === message.member.id
-                                const collector = message.createReactionCollector(filter, { time: 15000 });
+                                const collector = message.createReactionCollector(filter3, { time: 15000 });
                                 collector.on('collect', r => {
                                     Choix.push({Reaction: r.emoji, Message: m})
                                     message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
