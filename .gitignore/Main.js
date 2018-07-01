@@ -67,7 +67,7 @@ bot.on("message", async function(message) {
                         var Question = m
                         var Choix = []
                         message.channel.send("Les choix (1 par message | 10 minutes pour répondre | dite ``finish`` pour terminer | 10 choix max)")
-                        const collector = message.channel.createMessageCollector(filter2, { time: 600000, max: 10 });
+                        const collector = message.channel.createMessageCollector(filter2, { time: 300000, max: 10 });
                         collector.on('collect', m => {
                             if (m.content === "finish"){
                                 collector.stop()
@@ -111,22 +111,26 @@ chois
 +
 `
 1 vote par personne (les votes en double ne seront pas prit en compte)
-Fin du sondage: ` + Date.now() + Temp*60000 ).then(msg => {
+Fin du sondage: ` + Date(Date.now() + Temp*60000) ).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
-                                    const collector = msg.createReactionCollector(filter3, { time: 15000 });
+                                    const collector = msg.createReactionCollector(filter3, { time: 60000 });
                                     collector.on('collect', r => {
                                            if (r.emoji.toString() === "✅"){
                                                collector.stop();
                                                message.channel.send("Sondage envoyer!");
                                                msg.delete();
+                                               
+                                               //message.guild.channels.get("463018996652834826").send()
+                                               //message.guild.channels.get("462996913290215424").send()
                                            }else if(r.emoji.toString() === "❎"){
                                                collector.stop();
                                                message.channel.send("Sondage annuler!");
                                                msg.delete();
-                                           }else{
-                                               message.channel.send(r.emoji.name);
                                            };
                                     }); 
+                                    collector.on('end', r => {
+                                        msg.delete();
+                                    });
                                     
                                     msg.react("✅");
                                     msg.react("❎");
