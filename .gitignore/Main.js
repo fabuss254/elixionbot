@@ -119,6 +119,7 @@ chois
                     message.channel.send("Tu n'as pas accés a cette commande!").then(msg => {msg.delete(5000)});
                 }
             }
+            break;
         
         case "help":
             message.delete();
