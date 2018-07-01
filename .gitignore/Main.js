@@ -509,10 +509,10 @@ function SondageGiv(){
                         };
                     });
                     if (IsFinished === true){
+                        var MsgId = args[1];
+                        var Ques = args[2];
                         args.splice(0,1);
-                        var MsgId = args[1]
                         args.splice(1,1);
-                        var Ques = args[2]
                         args.splice(2,1);
                         var MD = []
                         args.forEach(function(v,i){
