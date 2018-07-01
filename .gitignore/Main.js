@@ -6,6 +6,7 @@ const Discord = require("discord.js");
 
 const Preferences = require("./Bot_Modules/Settings.json");
 const Details = require("./Bot_Modules/Bots_Details.json");
+const SlendArmy = require("./Bot_Modules/SlenderArmy.json");
 
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
@@ -55,6 +56,70 @@ bot.on("message", async function(message) {
     if (!message.content.startsWith(prefix)) return;
     switch (args[0].toLowerCase()) {
  
+        case "sondage":
+            if (message.guild.id === SlendArmy.GuildId){
+                message.delete()
+                if (message.member.roles.has(SlendArmy.SondageRole)){
+                    message.channel.send("Quelle est la question? (2 minute pour repondre)")
+                    const filter2 = m => m.author.id === message.author.id;
+                    const collector = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
+                    collector.on('collect', m => {
+                        var Question = m
+                        var Choix = {}
+                        message.channel.send("Les choix (1 par message | 10 minutes pour répondre | dite ``finish`` pour terminer | 10 choix max)")
+                        const collector = message.channel.createMessageCollector(filter2, { time: 600000, max: 10 });
+                        collector.on('collect', m => {
+                            if (m.content === "finish"){
+                                collector.stop()
+                            }else{
+                                message.channel.send("Reagir a ce message avec la reaction")
+                                const filter3 = (reaction, user) => user.id === message.member.id
+                                const collector = message.createReactionCollector(filter, { time: 15000 });
+                                collector.on('collect', r => {
+                                    Choix.push({Reaction: r.emoji, Message: m})
+                                    message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
+                                });
+                            };
+                        });
+                        collector.on('end', collected => {
+                            message.channel.send("choisir le temp (en minute) avant la fin du sondage (2 minute pour repondre)");
+                            const collector4 = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
+                            collector4.on('collect', m => {
+                                var Temp = 0
+                                if (Number(m) = 0){
+                                    Temp = 10
+                                }else{
+                                    Temp = Math.floor(Number(m))
+                                }
+                                message.channel.send("Sondage mis sous " + Temp + " minutes")
+                                var chois = ""
+                                Choix.ForEach(function(v,i){
+                                    chois = chois + ":" + v.Reaction.name + ":" + " " + v.Message + "\n"
+                                }
+                                message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
+                                message.channel.send(` 462595124602339328
+
+**Nouveau sondage de <@` + message.member.id +`>**
+
+**Question**: `+ Question +`
+
+**Choix**\n`
++
+chois
++
+`
+**1 vote par personne (les votes en double ne seront pas prit en compte)**
+**Fin du sondage a: **` + Date.now() + Temp*60*1000 
+                            
+                            }
+                        });
+                        
+                    });
+                }else{
+                    message.channel.send("Tu n'as pas accés a cette commande!").then(msg => {msg.delete(5000)});
+                }
+            }
+        
         case "help":
             message.delete();
             var help_embed = new Discord.RichEmbed()
