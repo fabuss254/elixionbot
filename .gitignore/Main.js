@@ -503,7 +503,7 @@ function SondageGiv(){
                     msgs.get(v.id).edit(Str);
                 }
             });
-        };
+        });
     });
 }
 
