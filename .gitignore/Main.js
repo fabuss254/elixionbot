@@ -493,7 +493,7 @@ function SondageGiv(){
                     var gg = msgs.get(args[1]).content.split(" ");
                     var Str = ""
                     gg.forEach(function(v,i){
-                        if (gg[i+1] === "**min**"){
+                        if (gg[i+1] === "min**"){
                             var y = math.floor((args[0] - Date.now())/60000)
                             Str = Str + " " + y
                         }else{
