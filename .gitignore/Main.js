@@ -65,7 +65,7 @@ bot.on("message", async function(message) {
                     const collector = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
                     collector.on('collect', m => {
                         var Question = m
-                        var Choix = {}
+                        var Choix = []
                         message.channel.send("Les choix (1 par message | 10 minutes pour répondre | dite ``finish`` pour terminer | 10 choix max)")
                         const collector = message.channel.createMessageCollector(filter2, { time: 600000, max: 10 });
                         collector.on('collect', m => {
@@ -111,7 +111,7 @@ chois
 +
 `
 **1 vote par personne (les votes en double ne seront pas prit en compte)**
-**Fin du sondage a: **` + Date.now() + Temp*60*1000 )
+**Fin du sondage: **` + Date.now() + Temp*60*1000 )
                             
                             });
                         });
