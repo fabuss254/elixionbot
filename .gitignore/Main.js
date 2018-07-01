@@ -521,9 +521,17 @@ function SondageGiv(){
                                 MD.push({Reaction: args[i+1], Message: args[i].substring(1)});
                             };
                         });
+                        var emojisMsg = msgs.get(MsgId).reactions
+                        
+                        var Results = ""
+                        /*
+                        emojisMsg.forEach(function(v,i){
+                            Results = Results + "\n" + v.Reaction + " " + 
+                        });
+                        */
                         msgs.get(MsgId).edit(`
 **Resultat a la question**: ` + Ques + `
-TODO
+` + Results + `
 `); 
                         v.delete();
                     }else{
