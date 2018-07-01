@@ -74,7 +74,7 @@ bot.on("message", async function(message) {
                             }else{
                                 message.channel.send("Reagir a ce message avec la reaction").then(msg =>{
                                     const filter3 = (reaction, user) => user.id === message.member.id
-                                    const collector = message.createReactionCollector(filter3, { time: 15000 });
+                                    const collector = msg.createReactionCollector(filter3, { time: 15000 });
                                     collector.on('collect', r => {
                                            Choix.push({Reaction: r.emoji, Message: m})
                                            message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
@@ -95,7 +95,7 @@ bot.on("message", async function(message) {
                                 }
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
-                                Choix.ForEach(function(v,i){
+                                Choix.forEach(function(v,i){
                                     chois = chois + ":" + v.Reaction.name + ":" + " " + v.Message + "\n"
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
