@@ -77,7 +77,7 @@ bot.on("message", async function(message) {
                                     const collector = msg.createReactionCollector(filter3, { time: 15000 });
                                     collector.on('collect', r => {
                                            Choix.push({Reaction: r.emoji, Message: m})
-                                           message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
+                                           message.channel.send("Choix ajouter:\n \nReaction = :" + r.emoji.toString() + ":\nChoix: " + m)
                                     });  
                                 });
                                 
@@ -96,7 +96,7 @@ bot.on("message", async function(message) {
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
                                 Choix.forEach(function(v,i){
-                                    chois = chois + ":" + v.Reaction.name + ":" + " " + v.Message + "\n"
+                                    chois = chois + ":" + v.Reaction.toString() + ":" + " " + v.Message + "\n"
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
                                 message.channel.send(` 462595124602339328
