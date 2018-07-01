@@ -127,6 +127,10 @@ Fin du sondage: **` + Temp + ` min**`;
                                                        MessageEnd = "| " + v.Message + "|" + v.Reaction.toString()
                                                    });
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
+                                                   
+                                                   Choix.forEach(function(v,i){
+                                                       msg.react(v.Reaction.toString());
+                                                   }
                                                });
                                            }else if(r.emoji.toString() === "❎"){
                                                collector.stop();
@@ -511,9 +515,6 @@ function SondageGiv(){
                     if (IsFinished === true){
                         var MsgId = args[1];
                         var Ques = args[2];
-                        args.splice(0,1);
-                        args.splice(1,1);
-                        args.splice(2,1);
                         var MD = []
                         args.forEach(function(v,i){
                             if (args[i].startsWith(" ")){
