@@ -112,7 +112,7 @@ chois
 +
 `
 1 vote par personne (les votes en double ne seront pas prit en compte)
-Fin du sondage: **` + Temp ` min**`;
+Fin du sondage: **` + Temp + ` min**`;
                                     message.channel.send(MessageToSend).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3, { time: 60000 });
