@@ -91,7 +91,6 @@ bot.on("message", async function(message) {
                                 var Temp = 0
                                 if (parseInt(m) == 0){
                                     Temp = 10
-                                }else if
                                 }else{
                                     Temp = parseInt(m)
                                 }
@@ -118,10 +117,12 @@ Fin du sondage: ` + Date.now() + Temp*60*1000 ).then(msg => {
                                     collector.on('collect', r => {
                                            if (r.emoji.toString() == "✅"){
                                                collector.stop();
-                                               message.channel.send("Sondage envoyer!")
+                                               message.channel.send("Sondage envoyer!");
+                                               msg.delete();
                                            }else if(r.emoji.toString() == "❎"){
                                                collector.stop();
-                                               message.channel.send("Sondage annuler!")
+                                               message.channel.send("Sondage annuler!");
+                                               msg.delete();
                                            };
                                     }); 
                                     
