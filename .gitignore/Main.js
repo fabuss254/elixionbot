@@ -72,13 +72,15 @@ bot.on("message", async function(message) {
                             if (m.content === "finish"){
                                 collector.stop()
                             }else{
-                                message.channel.send("Reagir a ce message avec la reaction")
-                                const filter3 = (reaction, user) => user.id === message.member.id
-                                const collector = message.createReactionCollector(filter3, { time: 15000 });
-                                collector.on('collect', r => {
-                                    Choix.push({Reaction: r.emoji, Message: m})
-                                    message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
+                                message.channel.send("Reagir a ce message avec la reaction").then(msg =>{
+                                    const filter3 = (reaction, user) => user.id === message.member.id
+                                    const collector = message.createReactionCollector(filter3, { time: 15000 });
+                                    collector.on('collect', r => {
+                                           Choix.push({Reaction: r.emoji, Message: m})
+                                           message.channel.send("Choix ajouter:\nReaction = :" + r.emoji.name + ":\nChoix: " + m)
+                                    });  
                                 });
+                                
                             };
                         });
                         collector.on('end', collected => {
@@ -86,10 +88,10 @@ bot.on("message", async function(message) {
                             const collector4 = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
                             collector4.on('collect', m => {
                                 var Temp = 0
-                                if (Number(m) = 0){
+                                if (parseInt(m) == 0){
                                     Temp = 10
                                 }else{
-                                    Temp = Math.floor(Number(m))
+                                    Temp = parseInt(m)
                                 }
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
