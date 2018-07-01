@@ -124,7 +124,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
                                                    var MessageEnd = ""
                                                    Choix.forEach(function(v,i){
-                                                       MessageEnd = "| " + v.Message + "|" + v.Reaction.ToString()
+                                                       MessageEnd = "| " + v.Message + "|" + v.Reaction.toString()
                                                    });
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                });
