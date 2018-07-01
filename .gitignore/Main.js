@@ -500,7 +500,7 @@ function SondageGiv(){
                             Str = Str + v
                         };
                     });
-                    msgs.get(v.id).edit(Str);
+                    msgs.get(args[1]).edit(Str);
                 }
             });
         });
