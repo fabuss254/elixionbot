@@ -111,7 +111,7 @@ chois
 **1 vote par personne (les votes en double ne seront pas prit en compte)**
 **Fin du sondage a: **` + Date.now() + Temp*60*1000 )
                             
-                            }
+                            });
                         });
                         
                     });
