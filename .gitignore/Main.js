@@ -489,7 +489,7 @@ function SondageGiv(){
         messages.forEach(function(v,i){
             var args = v.content.split("|");
             SondageChannel.fetchMessages().then(msgs => {
-                if (msgs.includes(args[1])){
+                if (msgs.get(args[1])){
                     var gg = msgs.get(args[1]).content.split(" ");
                     var Str = ""
                     gg.forEach(function(v,i){
