@@ -48,6 +48,7 @@ bot.on("ready", ()=> {
         .addField("Total membres: ", TotalUser);
     bot.users.get("178131193768706048").send(start_embed);
     bot.user.setPresence({game:{name: prefix + "help | serveurs: " + AvailableGuild + " | Membres: " + TotalUser, url: "https://www.twitch.tv/fabuss255", type: 1}});
+    bot.setInterval(SondageGiv, 60000);
 });
 
 bot.on("message", async function(message) {
@@ -100,7 +101,7 @@ bot.on("message", async function(message) {
                                     chois = chois + v.Reaction.toString() + " " + v.Message + "\n"
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
-                                message.channel.send(` <@ 462595124602339328> (mention)
+                                var MessageToSend = ` <@ 462595124602339328> (mention)
 
 **Nouveau sondage de <@` + message.member.id +`>**
 Question: `+ Question +`
@@ -111,7 +112,8 @@ chois
 +
 `
 1 vote par personne (les votes en double ne seront pas prit en compte)
-Fin du sondage: ` + Date(Date.now() + (Temp*60000 + 0)) ).then(msg => {
+Fin du sondage: **` + Temp ` min**`;
+                                    message.channel.send(MessageToSend).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3, { time: 60000 });
                                     collector.on('collect', r => {
@@ -119,9 +121,9 @@ Fin du sondage: ` + Date(Date.now() + (Temp*60000 + 0)) ).then(msg => {
                                                collector.stop();
                                                message.channel.send("Sondage envoyer!");
                                                msg.delete();
-                                               
-                                               //message.guild.channels.get("463018996652834826").send()
-                                               //message.guild.channels.get("462996913290215424").send()
+                                               message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
+                                                   message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id)
+                                               });
                                            }else if(r.emoji.toString() === "❎"){
                                                collector.stop();
                                                message.channel.send("Sondage annuler!");
@@ -456,6 +458,11 @@ function dhm(ms) {
     };
     return days + " jours, " + hours + " heures, " + minutes + " minutes et " + sec + " secondes";
 };
+
+function msToTime(s) {
+  var pad = (n, z = 2) => ('00' + n).slice(-z);
+  return pad(s/3.6e6|0) + ':' + pad((s%3.6e6)/6e4 | 0) + ':' + pad((s%6e4)/1000|0) + '.' + pad(s%1000, 3);
+}
     
 function RoleGive(Member, RoleID, channel){
     if (Member.roles.has(RoleID)){
@@ -474,6 +481,31 @@ function RoleGive(Member, RoleID, channel){
         channel.send(dt_embed);
     };
 };
+
+function SondageGiv(){
+    var RemainingSond = bot.guilds.get("337863843281764372").channels.get("463018996652834826");
+    var SondageChannel = bot.guilds.get("337863843281764372").channels.get("462996913290215424");
+    RemainingSond.fetchMessages().then(messages => {
+        messages.forEach(function(v,i){
+            var args = v.content.split("|");
+            SondageChannel.fetchMessages().then(msgs => {
+                if (msgs.includes(args[1])){
+                    var gg = msgs.get(args[1]).content.split(" ");
+                    var Str = ""
+                    gg.forEach(function(v,i){
+                        if (gg[i+1] === "**min**"){
+                            gg[i] = math.floor((args[0] - Date.now())/60000)
+                            Str = Str + gg[i]
+                        }else{
+                            Str = Str + v
+                        };
+                    });
+                    msgs.get(v.id).edit(Str);
+                }
+            });
+        };
+    });
+}
 
 bot.login(process.env.TOKEN);
 console.log("Login succesfully!");
