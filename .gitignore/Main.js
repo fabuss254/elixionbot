@@ -111,7 +111,7 @@ chois
 +
 `
 1 vote par personne (les votes en double ne seront pas prit en compte)
-Fin du sondage: ` + Date(Date.now() + Temp*60000) ).then(msg => {
+Fin du sondage: ` + Date(Date.now() + (Temp*60000 + 7200000)) ).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3, { time: 60000 });
                                     collector.on('collect', r => {
