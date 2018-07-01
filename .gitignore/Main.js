@@ -494,7 +494,7 @@ function SondageGiv(){
                     var Str = ""
                     gg.forEach(function(v,i){
                         if (gg[i+1] === "min**"){
-                            var y = math.floor((args[0] - Date.now())/60000)
+                            var y = Math.floor((args[0] - Date.now())/60000)
                             Str = Str + " " + y
                         }else{
                             Str = Str + " " + v
