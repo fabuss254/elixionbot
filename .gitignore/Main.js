@@ -130,7 +130,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                    
                                                    Choix.forEach(function(v,i){
                                                        msg.react(v.Reaction.toString());
-                                                   }
+                                                   });
                                                });
                                            }else if(r.emoji.toString() === "❎"){
                                                collector.stop();
