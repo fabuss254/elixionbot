@@ -122,7 +122,11 @@ Fin du sondage: **` + Temp + ` min**`;
                                                message.channel.send("Sondage envoyer!");
                                                msg.delete();
                                                message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
-                                                   message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question)
+                                                   var MessageEnd = ""
+                                                   Choix.forEach(function(v,i){
+                                                       MessageEnd = "| " + v.Message + "|" + v.Reaction.ToString()
+                                                   });
+                                                   message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                });
                                            }else if(r.emoji.toString() === "❎"){
                                                collector.stop();
@@ -505,8 +509,18 @@ function SondageGiv(){
                         };
                     });
                     if (IsFinished === true){
+                        args.splice(0,1);
+                        args.splice(1,1);
+                        var Ques = args[2]
+                        args.splice(2,1);
+                        var MD = []
+                        args.forEach(function(v,i){
+                            if (args[i].startsWith(" ")){
+                                MD.push({Reaction: args[i+1], Message: args[i].substring(1)});
+                            };
+                        });
                         msgs.get(args[1]).edit(`
-**Resultat a la question**: ` + args[2] + `
+**Resultat a la question**: ` + Ques + `
 TODO
 `); 
                         v.delete();
