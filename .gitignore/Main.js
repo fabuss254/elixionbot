@@ -510,6 +510,7 @@ function SondageGiv(){
                     });
                     if (IsFinished === true){
                         args.splice(0,1);
+                        var MsgId = args[1]
                         args.splice(1,1);
                         var Ques = args[2]
                         args.splice(2,1);
@@ -519,7 +520,7 @@ function SondageGiv(){
                                 MD.push({Reaction: args[i+1], Message: args[i].substring(1)});
                             };
                         });
-                        msgs.get(args[1]).edit(`
+                        msgs.get(MsgId).edit(`
 **Resultat a la question**: ` + Ques + `
 TODO
 `); 
