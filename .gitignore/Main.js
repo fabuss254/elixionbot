@@ -63,12 +63,13 @@ bot.on("message", async function(message) {
                 if (message.member.roles.has("416983347160678401")){
                     message.channel.send("Quelle est la question? (2 minute pour repondre sinon annulation)")
                     const filter2 = m => m.author.id === message.author.id;
-                    const collector = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
+                    const collector = message.channel.createMessageCollector(filter2, { time: 120000 });
                     collector.on('collect', m => {
+                        collector.stop();
                         var Question = m
                         var Choix = []
                         message.channel.send("Les choix (1 par message | dite ``finish`` pour terminer | 10 choix max)")
-                        const collector = message.channel.createMessageCollector(filter2, { max: 10 });
+                        const collector = message.channel.createMessageCollector(filter2, {max: 24});
                         collector.on('collect', m => {
                             if (m.content === "finish"){
                                 collector.stop()
@@ -91,6 +92,7 @@ bot.on("message", async function(message) {
                             const collector4 = message.channel.createMessageCollector(filter2, { max: 1 });
                             collector4.on('collect', m => {
                                 var Temp = 0
+                                collector4.stop();
                                 if (parseInt(m) == 0){
                                     Temp = 10
                                 }else{
@@ -120,7 +122,7 @@ chois
 Fin du sondage: **` + Temp + ` min**`;
                                     message.channel.send(MessageToSend).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
-                                    const collector = msg.createReactionCollector(filter3, { time: 60000 });
+                                    const collector = msg.createReactionCollector(filter3, {});
                                     collector.on('collect', r => {
                                            if (r.emoji.toString() === "✅"){
                                                collector.stop();
@@ -533,10 +535,12 @@ function SondageGiv(){
                                 }
                             });
                         });
-                        
-                        msgs.get(MsgId).edit(`
+                        msgs.get(MsgId).delete();
+                        bot.guilds.get("337863843281764372").channels.get("462996913290215424").send(`
 **Resultat a la question**: ` + Ques + `
 ` + Results + `
+
+**Merci d'avoir participer!**
 `); 
                         v.delete();
                     }else{
