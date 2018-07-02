@@ -145,7 +145,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                    
                                                    Choix.forEach(function(v,i){
                                                        if (v.Reaction.id){
-                                                           msg.react(bot.emojis.get(v.Reaction.id).toString());
+                                                           msg.react(bot.emojis.get(v.Reaction.id));
                                                        }else{
                                                            msg.react(v.Reaction.toString());
                                                        };
