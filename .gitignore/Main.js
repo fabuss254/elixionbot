@@ -65,9 +65,9 @@ bot.on("message", async function(message) {
                     const filter2 = m => m.author.id === message.author.id;
                     const collector = message.channel.createMessageCollector(filter2, { time: 120000 });
                     collector.on('collect', m => {
-                        collector.stop();
                         var Question = m
                         var Choix = []
+                        collector.stop();
                         message.channel.send("Les choix (1 par message | dite ``finish`` pour terminer | 10 choix max)")
                         const collector = message.channel.createMessageCollector(filter2, {max: 24});
                         collector.on('collect', m => {
