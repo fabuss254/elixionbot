@@ -78,7 +78,11 @@ bot.on("message", async function(message) {
                                     const collector = msg.createReactionCollector(filter3);
                                     collector.on('collect', r => {
                                             Choix.push({Reaction: r.emoji, Message: m});
-                                            message.channel.send("Choix ajouter:\n \nReaction = " + bot.emojis.get(r.emoji.id).toString() + "\nChoix = " + m);
+                                            if (r.emoji.id){
+                                                message.channel.send("Choix ajouter:\n \nReaction = " + bot.emojis.get(r.emoji.id).toString() + "\nChoix = " + m + "\nEmoji custom");
+                                            }else{
+                                                message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m + "\nEmoji normal");
+                                            };
                                             collector.stop();
                                             msg.delete();
                                     });  
@@ -104,7 +108,12 @@ bot.on("message", async function(message) {
                                 });
                                 var MessageEnd = ""
                                 Choix.forEach(function(v,i){
-                                    MessageEnd = MessageEnd + "|←" + v.Message + "|" + v.Reaction.id
+                                    if (v.Reaction.id){
+                                        MessageEnd = MessageEnd + "|←" + v.Message + "|C" + v.Reaction.id
+                                    }else{
+                                        MessageEnd = MessageEnd + "|←" + v.Message + "|N" + v.Reaction.toString()
+                                    }
+                                    
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
                                 var MessageToSend = ` <@ 462595124602339328> (mention)
@@ -131,7 +140,11 @@ Fin du sondage: **` + Temp + ` min**`;
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                    
                                                    Choix.forEach(function(v,i){
-                                                       msg.react(bot.emojis.get(v.Reaction.id).toString());
+                                                       if (v.Reaction.id){
+                                                           msg.react(bot.emojis.get(v.Reaction.id).toString());
+                                                       }else{
+                                                           msg.react(v.Reaction.toString());
+                                                       };
                                                    });
                                                });
                                            }else if(r.emoji.toString() === "❎"){
@@ -520,7 +533,11 @@ function SondageGiv(){
                         var MD = []
                         args.forEach(function(v,i){
                             if (args[i].startsWith("←")){
-                                MD.push({Reaction: args[i+1], Message: args[i].substring(1)});
+                                if (args[i+1].startsWith("C")){
+                                    MD.push({Reaction: bot.emojis.get(args[i+1].substring(1)).toString(), Message: args[i].substring(1)});
+                                }else{
+                                    MD.push({Reaction: args[i+1].substring(1), Message: args[i].substring(1)});
+                                };
                             };
                         });
                         var emojisMsg = msgs.get(MsgId).reactions
@@ -530,7 +547,7 @@ function SondageGiv(){
                         emojisMsg.forEach(function(v,i){
                             MD.forEach(function(v2,i2){
                                 if (v.emoji.toString() == v2.Reaction){
-                                    Results = Results + "\n" + bot.emojis.get(v2.Reaction).toString() + " " + v2.Message + " = " + (v.count - 1)
+                                    Results = Results + "\n" + v2.Reaction + " " + v2.Message + " = " + (v.count - 1)
                                 }
                             });
                         });
