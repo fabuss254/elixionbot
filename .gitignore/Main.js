@@ -78,7 +78,7 @@ bot.on("message", async function(message) {
                                     const collector = msg.createReactionCollector(filter3);
                                     collector.on('collect', r => {
                                             Choix.push({Reaction: r.emoji, Message: m});
-                                            message.channel.send("Choix ajouter:\n \nReaction = " + message.guild.emojis.get(r.emoji.id) + "\nChoix = " + m);
+                                            message.channel.send("Choix ajouter:\n \nReaction = " + message.guild.emojis.get(r.emoji.id).toString() + "\nChoix = " + m);
                                             collector.stop();
                                             msg.delete();
                                     });  
@@ -100,7 +100,7 @@ bot.on("message", async function(message) {
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
                                 Choix.forEach(function(v,i){
-                                    chois = chois + message.guild.emojis.get(v.Reaction.id) + " " + v.Message + "\n"
+                                    chois = chois + message.guild.emojis.get(v.Reaction.id).toString() + " " + v.Message + "\n"
                                 });
                                 var MessageEnd = ""
                                 Choix.forEach(function(v,i){
@@ -131,7 +131,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                    
                                                    Choix.forEach(function(v,i){
-                                                       msg.react(message.guild.emojis.get(v.Reaction.id));
+                                                       msg.react(message.guild.emojis.get(v.Reaction.id).toString());
                                                    });
                                                });
                                            }else if(r.emoji.toString() === "❎"){
@@ -530,7 +530,7 @@ function SondageGiv(){
                         emojisMsg.forEach(function(v,i){
                             MD.forEach(function(v2,i2){
                                 if (v.emoji.toString() == v2.Reaction){
-                                    Results = Results + "\n" + bot.guilds.get("337863843281764372").emojis.get(v2.Reaction) + " " + v2.Message + " = " + (v.count - 1)
+                                    Results = Results + "\n" + bot.guilds.get("337863843281764372").emojis.get(v2.Reaction).toString() + " " + v2.Message + " = " + (v.count - 1)
                                 }
                             });
                         });
