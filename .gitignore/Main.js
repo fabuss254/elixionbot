@@ -61,14 +61,14 @@ bot.on("message", async function(message) {
             if (message.guild.id === "337863843281764372"){
                 message.delete()
                 if (message.member.roles.has("416983347160678401")){
-                    message.channel.send("Quelle est la question? (2 minute pour repondre)")
+                    message.channel.send("Quelle est la question? (2 minute pour repondre sinon annulation)")
                     const filter2 = m => m.author.id === message.author.id;
                     const collector = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
                     collector.on('collect', m => {
                         var Question = m
                         var Choix = []
-                        message.channel.send("Les choix (1 par message | 10 minutes pour répondre | dite ``finish`` pour terminer | 10 choix max)")
-                        const collector = message.channel.createMessageCollector(filter2, { time: 300000, max: 10 });
+                        message.channel.send("Les choix (1 par message | dite ``finish`` pour terminer | 10 choix max)")
+                        const collector = message.channel.createMessageCollector(filter2, { max: 10 });
                         collector.on('collect', m => {
                             if (m.content === "finish"){
                                 collector.stop()
