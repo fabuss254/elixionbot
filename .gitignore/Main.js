@@ -101,6 +101,10 @@ bot.on("message", async function(message) {
                                 Choix.forEach(function(v,i){
                                     chois = chois + v.Reaction.toString() + " " + v.Message + "\n"
                                 });
+                                var MessageEnd = ""
+                                Choix.forEach(function(v,i){
+                                    MessageEnd = MessageEnd + "|←" + v.Message + "|" + v.Reaction.toString()
+                                });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
                                 var MessageToSend = ` <@ 462595124602339328> (mention)
 
@@ -123,10 +127,6 @@ Fin du sondage: **` + Temp + ` min**`;
                                                message.channel.send("Sondage envoyer!");
                                                msg.delete();
                                                message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
-                                                   var MessageEnd = ""
-                                                   Choix.forEach(function(v,i){
-                                                       MessageEnd = "|←" + v.Message + "|" + v.Reaction.toString()
-                                                   });
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                    
                                                    Choix.forEach(function(v,i){
@@ -525,11 +525,15 @@ function SondageGiv(){
                         var emojisMsg = msgs.get(MsgId).reactions
                         
                         var Results = ""
-                        /*
+                        
                         emojisMsg.forEach(function(v,i){
-                            Results = Results + "\n" + v.Reaction + " " + 
+                            MD.forEach(function(v2,i2){
+                                if (v.emoji.toString() == v2.Reaction){
+                                    Results = Results + "\n" + v2.Reaction + " " + v2.Message + " = " + (v.count - 1)
+                                }
+                            });
                         });
-                        */
+                        
                         msgs.get(MsgId).edit(`
 **Resultat a la question**: ` + Ques + `
 ` + Results + `
