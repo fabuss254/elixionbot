@@ -150,7 +150,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                msg.delete();
                                                message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
-                                                   message.guild.channels.get("462996913290215424").send("Nouveau sondage de " + message.author.username + " \nQuestion: **" + Question + "**\n <@&416983347160678401>".then(f => f.delete(100));
+                                                   message.guild.channels.get("462996913290215424").send("Nouveau sondage de " + message.author.username + " \nQuestion: **" + Question + "**\n <@&416983347160678401>").then(f => f.delete(100));
                                                    Choix.forEach(function(v,i){
                                                        if (v.Reaction.id){
                                                            msg.react(bot.emojis.get(v.Reaction.id));
