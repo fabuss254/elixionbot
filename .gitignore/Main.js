@@ -77,14 +77,24 @@ bot.on("message", async function(message) {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3);
                                     collector.on('collect', r => {
-                                            Choix.push({Reaction: r.emoji, Message: m});
-                                            if (r.emoji.id){
-                                                message.channel.send("Choix ajouter:\n \nReaction = " + bot.emojis.get(r.emoji.id).toString() + "\nChoix = " + m + "\nEmoji custom");
+                                            var exist = false;
+                                            Choix.forEach(function(v,i){
+                                                if (v.Reaction === r.emoji){
+                                                    exist = true;
+                                                };
+                                            });
+                                            if (exist === true){
+                                                message.channel.send("ERREUR: Emoji similaire deja utiliser! | Merci de mettre une autre reaction!").then(gd => gd.delete(5000));
                                             }else{
-                                                message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m + "\nEmoji normal");
-                                            };
-                                            collector.stop();
-                                            msg.delete();
+                                                Choix.push({Reaction: r.emoji, Message: m});
+                                                if (r.emoji.id){
+                                                    message.channel.send("Choix ajouter:\n \nReaction = " + bot.emojis.get(r.emoji.id).toString() + "\nChoix = " + m + "\nEmoji custom");
+                                                }else{
+                                                    message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m + "\nEmoji normal");
+                                                };
+                                                collector.stop();
+                                                msg.delete();
+                                            }
                                     });  
                                 });
                                 
@@ -120,9 +130,7 @@ bot.on("message", async function(message) {
                                     
                                 });
                                 message.channel.send("Fin de la periode de configuration, voici ce qui va s'afficher, reagissez pour confirmer")
-                                var MessageToSend = ` <@ 462595124602339328> (mention)
-
-**Nouveau sondage de <@` + message.member.id +`>**
+                                var MessageToSend = `**Nouveau sondage de ` + message.author.username +  + `**
 Question: `+ Question +`
 
 __**Choix**__\n`
