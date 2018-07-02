@@ -77,17 +77,18 @@ bot.on("message", async function(message) {
                                     const filter3 = (reaction, user) => user.id === message.member.id
                                     const collector = msg.createReactionCollector(filter3, { time: 15000 });
                                     collector.on('collect', r => {
-                                            Choix.push({Reaction: r.emoji, Message: m})
-                                            message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m)
-                                            collector.stop()
+                                            Choix.push({Reaction: r.emoji, Message: m});
+                                            message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m);
+                                            collector.stop();
+                                            msg.delete();
                                     });  
                                 });
                                 
                             };
                         });
                         collector.on('end', collected => {
-                            message.channel.send("choisir le temp (en minute) avant la fin du sondage (2 minute pour repondre | Max: ``Null``)");
-                            const collector4 = message.channel.createMessageCollector(filter2, { time: 120000, max: 1 });
+                            message.channel.send("choisir le temp (en minute) avant la fin du sondage (Max: ``Null``)");
+                            const collector4 = message.channel.createMessageCollector(filter2, { max: 1 });
                             collector4.on('collect', m => {
                                 var Temp = 0
                                 if (parseInt(m) == 0){
@@ -124,7 +125,7 @@ Fin du sondage: **` + Temp + ` min**`;
                                                message.guild.channels.get("462996913290215424").send(MessageToSend).then(msg => {
                                                    var MessageEnd = ""
                                                    Choix.forEach(function(v,i){
-                                                       MessageEnd = "| " + v.Message + "|" + v.Reaction.toString()
+                                                       MessageEnd = "|←" + v.Message + "|" + v.Reaction.toString()
                                                    });
                                                    message.guild.channels.get("463018996652834826").send((Date.now() + Temp*60000) + "|" + msg.id + "|" + Question + MessageEnd)
                                                    
@@ -517,7 +518,7 @@ function SondageGiv(){
                         var Ques = args[2];
                         var MD = []
                         args.forEach(function(v,i){
-                            if (args[i].startsWith(" ")){
+                            if (args[i].startsWith("←")){
                                 MD.push({Reaction: args[i+1], Message: args[i].substring(1)});
                             };
                         });
