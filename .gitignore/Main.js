@@ -63,20 +63,19 @@ bot.on("message", async function(message) {
                 if (message.member.roles.has("416983347160678401")){
                     message.channel.send("Quelle est la question? (2 minute pour repondre sinon annulation)")
                     const filter2 = m => m.author.id === message.author.id;
-                    const collector = message.channel.createMessageCollector(filter2, { time: 120000 });
+                    const collector = message.channel.createMessageCollector(filter2, { maxMatches: 1 });
                     collector.on('collect', m => {
                         var Question = m
                         var Choix = []
-                        collector.stop();
                         message.channel.send("Les choix (1 par message | dite ``finish`` pour terminer | 10 choix max)")
-                        const collector = message.channel.createMessageCollector(filter2, {max: 24});
+                        const collector = message.channel.createMessageCollector(filter2, {maxMatches: 10});
                         collector.on('collect', m => {
                             if (m.content === "finish"){
                                 collector.stop()
                             }else{
                                 message.channel.send("Reagir a ce message avec la reaction").then(msg =>{
                                     const filter3 = (reaction, user) => user.id === message.member.id
-                                    const collector = msg.createReactionCollector(filter3, { time: 15000 });
+                                    const collector = msg.createReactionCollector(filter3);
                                     collector.on('collect', r => {
                                             Choix.push({Reaction: r.emoji, Message: m});
                                             message.channel.send("Choix ajouter:\n \nReaction = " + r.emoji.toString() + "\nChoix = " + m);
@@ -89,7 +88,7 @@ bot.on("message", async function(message) {
                         });
                         collector.on('end', collected => {
                             message.channel.send("choisir le temp (en minute) avant la fin du sondage (Max: ``Null``)");
-                            const collector4 = message.channel.createMessageCollector(filter2, { max: 1 });
+                            const collector4 = message.channel.createMessageCollector(filter2, { maxMatches: 1 });
                             collector4.on('collect', m => {
                                 var Temp = 0
                                 collector4.stop();
@@ -122,7 +121,7 @@ chois
 Fin du sondage: **` + Temp + ` min**`;
                                     message.channel.send(MessageToSend).then(msg => {
                                     const filter3 = (reaction, user) => user.id === message.member.id
-                                    const collector = msg.createReactionCollector(filter3, {});
+                                    const collector = msg.createReactionCollector(filter3);
                                     collector.on('collect', r => {
                                            if (r.emoji.toString() === "✅"){
                                                collector.stop();
