@@ -104,7 +104,11 @@ bot.on("message", async function(message) {
                                 message.channel.send("Sondage mis sous " + Temp + " minutes")
                                 var chois = ""
                                 Choix.forEach(function(v,i){
-                                    chois = chois + bot.emojis.get(v.Reaction.id).toString() + " " + v.Message + "\n"
+                                    if (v.Reaction.id){
+                                        chois = chois + bot.emojis.get(v.Reaction.id).toString() + " " + v.Message + "\n"
+                                    }else{
+                                        chois = chois + v.Reaction.toString() + " " + v.Message + "\n"
+                                    };
                                 });
                                 var MessageEnd = ""
                                 Choix.forEach(function(v,i){
