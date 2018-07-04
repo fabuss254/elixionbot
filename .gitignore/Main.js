@@ -77,8 +77,8 @@ bot.on("message", async function(message) {
                         Found.forEach(function(v,i){
                             v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
                         });
-                        message.channel.send("Serveur desinfecter avec succés! =)")
-                    };
+                        message.channel.send("Serveur desinfecter avec succés! =)");
+                    });
                 });
             }else{
                 message.delete();
