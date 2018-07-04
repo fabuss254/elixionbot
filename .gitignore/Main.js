@@ -63,12 +63,12 @@ bot.on("message", async function(message) {
                 var Found = []
                 Mem.forEach(function(v,i){
                     if (!v.lastMessage && v.joinedTimestamp > Date.now() - 60*60000){
-                        Found.push(Mem.id);
+                        Found.push(v);
                     };
                 });
                 
                 Found.forEach(function(v,i){
-                    message.channel.send("<@" + v + ">")
+                    message.channel.send("<@" + v.id + ">")
                 });
                 
                 message.channel.send("Trouver " + Found.length + " Potentiel fake users")
