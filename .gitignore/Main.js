@@ -62,7 +62,7 @@ bot.on("message", async function(message) {
                 var Mem = message.guild.members
                 var Found = []
                 Mem.forEach(function(v,i){
-                    if (!v.lastMessage && v.joinedTimestamp > Date.now() - 60*60000 &&){
+                    if (!v.lastMessage && v.joinedTimestamp > Date.now() - parseInt(args[1])*60000 && v.presence.status == "offline"){
                         Found.push(Mem.id);
                     };
                 });
