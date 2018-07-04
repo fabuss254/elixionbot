@@ -67,19 +67,19 @@ bot.on("message", async function(message) {
                     };
                 });
                 
-                message.channel.send("Trouver " + Found.length + " Potentiel fake users").then(msg =>{
+                message.channel.send("Trouver " + Found.length + " Potentiel fake users\n✅ **Pour confirmer le bannissement**\n🤔 **Pour afficher les potentiel fake users").then(msg =>{
                     msg.react("✅")
                     msg.react("🤔")
                     
                     const filter3 = (reaction, user) => user.id === message.member.id
                     const collector = msg.createReactionCollector(filter3);
                     collector.on('collect', r => {
-                        if (r.toString() === "🤔"){
-                            message.channel.send("Voici les utilisateurs potentielles");
+                        if (r.emoji.toString() === "🤔"){
+                            message.channel.send("Voici les Potentiel fake users");
                             Found.forEach(function(v,i){
                                 message.channel.send("<@" + v.id + ">");
                             });
-                        }elseif(r.toString() === "✅"){
+                        }elseif(r.emoji.toString() === "✅"){
                             collector.stop()
                             message.channel.send("Bannissement lancer!");
                             Found.forEach(function(v,i){
