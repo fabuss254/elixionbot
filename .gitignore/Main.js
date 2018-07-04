@@ -80,9 +80,11 @@ bot.on("message", async function(message) {
                                 });
                             }else if(r.emoji.toString() === "✅"){
                                 collector.stop()
+                                var Invite = message.channel.createInvite({maxAge: 0, unique: true, reason: "Invite privée pour les false positives de la commande .clearbot"})
                                 message.channel.send("Desinfection total lancer!");
                                 Found.forEach(function(v,i){
                                     if (v.bannable == true){
+                                        v.send("**Message de la slendarmy**\nNous venons de nous faire bot raid, nous avons donc bannis toutes les personnes passant un filtre strict\nBien sur comme tout programme, il peut y avoir des erreurs, si vous êtes une personne réel\nVeuillez aller sur ce discord pour messager en privé Fabuss254 (propriétaire du serveur): " + Invite)
                                         v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
                                     }else{
                                         message.channel.send("<@" + v.id + "> n'as pas pu êtres ban (permissions insuffisant)");
@@ -91,9 +93,11 @@ bot.on("message", async function(message) {
 
                             }else if(r.emoji.toString() === "👊"){
                                 collector.stop()
+                                message.guild
                                 message.channel.send("Desinfection partielle lancer!");
                                 Found.forEach(function(v,i){
                                     if (v.kickable == true){
+                                        v.send("**Message de la slendarmy**\nNous venons de nous faire bot raid, nous avons donc kick toutes les personnes passant un filtre strict\nBien sur comme tout programme, il peut y avoir des erreurs, si vous êtes une personne réel\nVeuillez aller sur ce discord pour messager en privé Fabuss254 (propriétaire du serveur): https://discord.gg/4F23bx2")
                                         v.kick({reason: "Fake utilisateur, kick auto par fabuss254"});
                                     }else{
                                         message.channel.send("<@" + v.id + "> n'as pas pu êtres kick (permissions insuffisant)");
