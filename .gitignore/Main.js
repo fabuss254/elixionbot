@@ -69,7 +69,7 @@ bot.on("message", async function(message) {
                 if (Found.length == 0){
                     message.channel.send("**Le serveur est clean!** ``0`` Potentiel fake users")
                 }else{
-                    message.channel.send("Trouver ``" + Found.length + "`` Potentiel fake users\n✅ **Pour confirmer le bannissement**\n🤔 **Pour afficher les potentiel fake users**").then(msg =>{
+                    message.channel.send("Trouver ``" + Found.length + "`` Potentiel fake users\n✅ **Pour ban les potentiel fake users(Desinfection total)**\n🤔 **Pour afficher les potentiel fake users | NE PAS UTILISER POUR +100 PERSONNES**\n👊 **Pour kick les potentiel fake users(Desinfection partielle)**").then(msg =>{
                         const filter3 = (reaction, user) => user.id === message.member.id
                         const collector = msg.createReactionCollector(filter3);
                         collector.on('collect', r => {
@@ -80,14 +80,45 @@ bot.on("message", async function(message) {
                                 });
                             }else if(r.emoji.toString() === "✅"){
                                 collector.stop()
-                                message.channel.send("Bannissement lancer!");
+                                message.channel.send("Desinfection total lancer!");
+                                var NotBan = []
                                 Found.forEach(function(v,i){
-                                    v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
-                                    if (i == Found.length){
-                                        message.channel.send("Serveur desinfecter avec succés! =)");  
+                                    if (v.bannable == true){
+                                        v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
+                                    }else{
+                                        NotBan.push(v)
+                                    }
+                                    
+                                    if (i == Found.length && NotBan.length == 0){
+                                        message.channel.send("Serveur desinfecter avec succés! =)");
+                                    }else if(i == Found.length){
+                                        message.channel.send("Les serveurs a été desinfecter en parti, voici des personnes que je n'ai pas pu ban:");  
+                                        NotBan.forEach(function(v1){
+                                            message.channel.send("<@" + v1.id + ">");
+                                        });
                                     }
                                 });
 
+                            }else if(r.emoji.toString() === "👊"){
+                                collector.stop()
+                                message.channel.send("Desinfection partielle lancer!");
+                                var NotBan = []
+                                Found.forEach(function(v,i){
+                                    if (v.kickable == true){
+                                        v.kick({reason: "Fake utilisateur, kick auto par fabuss254"});
+                                    }else{
+                                        NotBan.push(v)
+                                    }
+                                    
+                                    if (i == Found.length && NotBan.length == 0){
+                                        message.channel.send("Serveur desinfecter avec succés! =)");
+                                    }else if(i == Found.length){
+                                        message.channel.send("Les serveurs a été desinfecter en parti, voici des personnes que je n'ai pas pu kick:");  
+                                        NotBan.forEach(function(v1){
+                                            message.channel.send("<@" + v1.id + ">");
+                                        });
+                                    }
+                                });
                             }
                         });
                         msg.react("✅")
