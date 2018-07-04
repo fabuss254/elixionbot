@@ -70,7 +70,7 @@ bot.on("message", async function(message) {
                 message.channel.send("Trouver " + Found.length + " Potentiel fake users")
                 
                 Found.forEach(function(v,i){
-                    message.channel.send("<@" + v.id + ">")
+                    v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
                 });
             }else{
                 message.delete();
