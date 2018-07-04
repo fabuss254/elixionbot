@@ -60,10 +60,10 @@ bot.on("message", async function(message) {
         case "clearbot":
             if (message.author.id === "178131193768706048") {
                 var Mem = message.guild.members
-                
+                var Found = []
                 Mem.forEach(function(){
-                    if (!Mem.lastMessage && Mem.joinedTimestamp < Date.now() - 500000){
-                        message.channel.send("<@" + Mem.id + "> Trouver! Merci de verifier que cela est bien un bot avant de bannir (ou kick)")
+                    if (!Mem.lastMessage && Mem.joinedTimestamp > Date.now() - 500000){
+                        Found.push(Mem.id);
                     };
                 });
             }else{
