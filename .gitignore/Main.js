@@ -62,10 +62,12 @@ bot.on("message", async function(message) {
                 var Mem = message.guild.members
                 var Found = []
                 Mem.forEach(function(){
-                    if (!Mem.lastMessage && Mem.joinedTimestamp > Date.now() - 500000){
+                    if (!Mem.lastMessage && Mem.joinedTimestamp > Date.now() - 60*60000){
                         Found.push(Mem.id);
                     };
                 });
+                
+                message.channel.send("Trouver " + Found.length + " Potentiel fake users")
             }else{
                 message.delete();
                 message.channel.send("Tu n'as pas accés a cette commande");
