@@ -81,48 +81,29 @@ bot.on("message", async function(message) {
                             }else if(r.emoji.toString() === "✅"){
                                 collector.stop()
                                 message.channel.send("Desinfection total lancer!");
-                                var NotBan = []
                                 Found.forEach(function(v,i){
                                     if (v.bannable == true){
                                         v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
                                     }else{
-                                        NotBan.push(v)
-                                    }
-                                    
-                                    if (i == Found.length && NotBan.length == 0){
-                                        message.channel.send("Serveur desinfecter avec succés! =)");
-                                    }else if(i == Found.length){
-                                        message.channel.send("Les serveurs a été desinfecter en parti, voici des personnes que je n'ai pas pu ban:");  
-                                        NotBan.forEach(function(v1){
-                                            message.channel.send("<@" + v1.id + ">");
-                                        });
+                                        message.channel.send("<@" + v.id + "> n'as pas pu êtres ban (permissions insuffisant)");
                                     }
                                 });
 
                             }else if(r.emoji.toString() === "👊"){
                                 collector.stop()
                                 message.channel.send("Desinfection partielle lancer!");
-                                var NotBan = []
                                 Found.forEach(function(v,i){
                                     if (v.kickable == true){
                                         v.kick({reason: "Fake utilisateur, kick auto par fabuss254"});
                                     }else{
-                                        NotBan.push(v)
-                                    }
-                                    
-                                    if (i == Found.length && NotBan.length == 0){
-                                        message.channel.send("Serveur desinfecter avec succés! =)");
-                                    }else if(i == Found.length){
-                                        message.channel.send("Les serveurs a été desinfecter en parti, voici des personnes que je n'ai pas pu kick:");  
-                                        NotBan.forEach(function(v1){
-                                            message.channel.send("<@" + v1.id + ">");
-                                        });
+                                        message.channel.send("<@" + v.id + "> n'as pas pu êtres kick (permissions insuffisant)");
                                     }
                                 });
                             }
                         });
                         msg.react("✅")
                         msg.react("🤔")
+                        msg.react("👊")
                     });
                 };
             }else{
