@@ -62,7 +62,7 @@ bot.on("message", async function(message) {
                 var Mem = message.guild.members
                 var Found = []
                 Mem.forEach(function(){
-                    if (!Mem.lastMessage && Mem.joinedTimestamp > Date.now() - 60*60000){
+                    if (!Mem.lastMessage){
                         Found.push(Mem.id);
                     };
                 });
