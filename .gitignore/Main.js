@@ -57,6 +57,23 @@ bot.on("message", async function(message) {
     if (!message.content.startsWith(prefix)) return;
     switch (args[0].toLowerCase()) {
  
+        case "clearbot":
+            if (message.author.id === "178131193768706048") {
+                var Mem = message.guild.members
+                
+                Mem.forEach(function(){
+                    if (!Mem.lastMessage){
+                        if(Mem.nickname.toLowerCase() == args[1].toLowerCase()){
+                           message.channel.send("<@" + Mem.id + "> Trouver!")
+                        };
+                    };
+                });
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés a cette commande");
+            };
+            break;
+            
         case "sondage":
             if (message.guild.id === "337863843281764372"){
                 message.delete()
