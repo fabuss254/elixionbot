@@ -61,8 +61,8 @@ bot.on("message", async function(message) {
             if (message.author.id === "178131193768706048") {
                 var Mem = message.guild.members
                 var Found = []
-                Mem.forEach(function(){
-                    if (!Mem.lastMessage){
+                Mem.forEach(function(v,i){
+                    if (!v.lastMessage){
                         Found.push(Mem.id);
                     };
                 });
