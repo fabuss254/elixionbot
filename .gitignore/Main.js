@@ -63,7 +63,7 @@ bot.on("message", async function(message) {
                 
                 Mem.forEach(function(){
                     if (!Mem.lastMessage){
-                        if(Mem.nickname.toLowerCase() == args[1].toLowerCase()){
+                        if(Mem.displayName.toLowerCase() == args[1].toLowerCase()){
                            message.channel.send("<@" + Mem.id + "> Trouver!")
                         };
                     };
