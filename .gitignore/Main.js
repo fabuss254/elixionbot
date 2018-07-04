@@ -62,10 +62,8 @@ bot.on("message", async function(message) {
                 var Mem = message.guild.members
                 
                 Mem.forEach(function(){
-                    if (!Mem.lastMessage){
-                        if(Mem.displayName.toLowerCase() == args[1].toLowerCase()){
-                           message.channel.send("<@" + Mem.id + "> Trouver!")
-                        };
+                    if (!Mem.lastMessage && Mem.joinedTimestamp < Date.now() - 500000){
+                        message.channel.send("<@" + Mem.id + "> Trouver! Merci de verifier que cela est bien un bot avant de bannir (ou kick)")
                     };
                 });
             }else{
