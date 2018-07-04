@@ -67,10 +67,18 @@ bot.on("message", async function(message) {
                     };
                 });
                 
-                message.channel.send("Trouver " + Found.length + " Potentiel fake users")
-                
-                Found.forEach(function(v,i){
-                    v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
+                message.channel.send("Trouver " + Found.length + " Potentiel fake users").then(msg =>{
+                    msg.react("✅")
+                    
+                    const filter3 = (reaction, user) => user.id === message.member.id
+                    const collector = msg.createReactionCollector(filter3, {maxMatches: 1});
+                    collector.on('collect', r => {
+                        message.channel.send("Bannissement lancer!");
+                        Found.forEach(function(v,i){
+                            v.ban({reason: "Fake utilisateur, ban auto par fabuss254"});
+                        });
+                        message.channel.send("Serveur desinfecter avec succés! =)")
+                    };
                 });
             }else{
                 message.delete();
