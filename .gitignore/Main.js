@@ -58,7 +58,7 @@ bot.on("message", async function(message) {
     switch (args[0].toLowerCase()) {
  
         case "clearbot":
-            if (message.author.id === "178131193768706048") {
+            if (message.author.id === "178131193768706048" || message.author.id === message.guild.ownerID) {
                 var Mem = message.guild.members
                 var Found = []
                 Mem.forEach(function(v,i){
