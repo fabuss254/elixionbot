@@ -62,9 +62,13 @@ bot.on("message", async function(message) {
                 var Mem = message.guild.members
                 var Found = []
                 Mem.forEach(function(v,i){
-                    if (!v.lastMessage && v.joinedTimestamp > Date.now() - 60*60000){
+                    if (!v.lastMessage && v.joinedTimestamp > Date.now() - 60*60000 &&){
                         Found.push(Mem.id);
                     };
+                });
+                
+                Found.forEach(function(v,i){
+                    message.channel.send("<@" + v + ">")
                 });
                 
                 message.channel.send("Trouver " + Found.length + " Potentiel fake users")
