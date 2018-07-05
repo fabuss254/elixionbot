@@ -57,6 +57,37 @@ bot.on("message", async function(message) {
     if (!message.content.startsWith(prefix)) return;
     switch (args[0].toLowerCase()) {
  
+        case "clearrole":
+            if (message.guild.id === "337863843281764372"){
+            if (message.author.id === "178131193768706048" || message.author.id === message.guild.ownerID || message.author.id === "274240989944610827"){
+                message.channel.send("Les rôles de tout le monde vont être clear (sauf whitelist), êtes vous sûr?").then(msg => {
+                    const collector = msg.createReactionCollector((reaction, user) => user.id === message.member.id);
+                    collector.on('collect', r => {
+                        collector.stop();
+                        const Whitelist = ["178131193768706048","274240989944610827","299605581142949888","337863324983230474"]
+                        const Mem = message.guild.members
+
+                        Mem.forEach(function(v,i){
+                            var IsWhitelist = false;
+                            Whitelist.forEach(function(v2){
+                                if (v.id === v2 || v.User.bot === true){
+                                    IsWhitelist = true;
+                                });
+                            });
+                            if (!IsWhitelist){
+                                v.removeRoles(v.roles, "Commande .clearrole");
+                                v.addRole("464451413947449354", "Commande .clearrole");
+                            });
+                        });
+                    });
+                    msg.react("✅")
+                });
+            }else{
+                message.delete();
+                message.channel.send("Tu n'as pas accés a cette commande");
+            }
+            break;    
+            
         case "clearbot":
             if (message.author.id === "178131193768706048" || message.author.id === message.guild.ownerID) {
                 var Mem = message.guild.members
