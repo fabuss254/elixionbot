@@ -70,7 +70,7 @@ bot.on("message", async function(message) {
                         Mem.forEach(function(v,i){
                             var IsWhitelist = false;
                             Whitelist.forEach(function(v2){
-                                if (v.id === v2 || v.User.bot === true){
+                                if (v.id === v2){
                                     IsWhitelist = true;
                                 };
                             });
