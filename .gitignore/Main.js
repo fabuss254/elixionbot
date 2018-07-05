@@ -72,7 +72,7 @@ bot.on("message", async function(message) {
                             Whitelist.forEach(function(v2){
                                 if (v.id === v2 || v.User.bot === true){
                                     IsWhitelist = true;
-                                });
+                                };
                             });
                             if (!IsWhitelist){
                                 v.removeRoles(v.roles, "Commande .clearrole");
