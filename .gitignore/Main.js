@@ -77,7 +77,7 @@ bot.on("message", async function(message) {
                             if (!IsWhitelist){
                                 v.removeRoles(v.roles, "Commande .clearrole");
                                 v.addRole("464451413947449354", "Commande .clearrole");
-                            });
+                            };
                         });
                     });
                     msg.react("✅")
