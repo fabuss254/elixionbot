@@ -86,6 +86,7 @@ bot.on("message", async function(message) {
                 message.delete();
                 message.channel.send("Tu n'as pas accés a cette commande");
             }
+            }
             break;    
             
         case "clearbot":
